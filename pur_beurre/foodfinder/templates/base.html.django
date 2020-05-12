@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Pur Beurre{% endblock title %}</title>
+  </head>
+  <body>
+
+    <main>
+      {% block main %}{% endblock main %}
+    </main>
+
+  </body>
+</html>
