@@ -9,6 +9,6 @@
     <button type="submit" name="submit">Submit</button>
   </form>
 
-  <a href="{% url 'login_view' %}">Login</a>
+  <a href="{% url 'register_view' %}">Register</a>
 
 {% endblock main %}

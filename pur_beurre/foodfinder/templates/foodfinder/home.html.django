@@ -1,0 +1,20 @@
+{% extends "base.html.django" %}
+
+{% block main %}
+
+  {% if user.is_authenticated %}
+
+    <h1>Connecté en tant que <span>{{ user.account }}</span></h1>
+
+    <a href="{% url 'logout_view' %}">Logout</a>
+
+  {% else %}
+
+    <h1>Connecte-toi</h1>
+
+    <a href="{% url 'login_view' %}">Login</a>
+    <a href="{% url 'register_view' %}">Register</a>
+
+  {% endif %}
+
+{% endblock main %}
