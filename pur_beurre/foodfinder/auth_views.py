@@ -24,10 +24,9 @@ def register_view(request):
             cd = form.cleaned_data
 
             try:
-                user = User.objects.create_user(cd['name'], cd['email'], cd['password'])
-                account = Account.objects.create(user=user)
-
-                login(request, user)
+                account = Account()
+                account.create_account_and_user(cd['name'], cd['email'], cd['password'])
+                account.login_account(request)
 
                 return redirect('home')
             except:
@@ -55,11 +54,11 @@ def login_view(request):
 
             cd = form.cleaned_data
 
-            user = authenticate(username=cd['email'], password=cd['password'])
+            account = Account.authenticate(cd['email'], cd['password'])
 
-            if user:
+            if account:
 
-                login(request, user)
+                account.login_account(request)
 
                 return redirect('home')
 
