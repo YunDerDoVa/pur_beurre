@@ -1,10 +1,9 @@
-from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 
 from django.shortcuts import render, redirect
 
-from .forms import RegisterForm, LoginForm
 from .models import Account
+from .forms import RegisterForm, LoginForm
 
 
 # Create your views here.
@@ -24,7 +23,7 @@ def register_view(request):
             cd = form.cleaned_data
 
             try:
-                user = User.objects.create_user(cd['name'], cd['email'], cd['password'])
+                user = Account.objects.create_user(cd['name'], cd['email'], cd['password'])
                 login(request, user)
 
                 return redirect('home')
@@ -54,7 +53,7 @@ def login_view(request):
             cd = form.cleaned_data
 
             try:
-                user = User.objects.get(email=cd['email'])
+                user = Account.objects.get(email=cd['email'])
                 user = authenticate(username=user.username, password=cd['password'])
             except:
                 user = authenticate(username=cd['email'], password=cd['password'])
