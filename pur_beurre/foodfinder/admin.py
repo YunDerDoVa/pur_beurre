@@ -1,8 +1,7 @@
 from django.contrib import admin
 
-from .models import Account, SearchFoodRequests
+from .models import SearchFoodRequests
 
 
 # Register your models here.
-admin.site.register(Account)
 admin.site.register(SearchFoodRequests)

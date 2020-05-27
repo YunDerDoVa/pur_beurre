@@ -15,3 +15,9 @@ https://github.com/GoswaTech/pur_beurre
 ## OpenFoodFacts Fields
 
 - nutrition_grade_fr
+
+## 19 Mai
+
+- Auth App
+- Abstract (ou Base) User
+- Django AllAuth

@@ -24,9 +24,8 @@ def register_view(request):
             cd = form.cleaned_data
 
             try:
-                account = Account()
-                account.create_account_and_user(cd['name'], cd['email'], cd['password'])
-                account.login_account(request)
+                user = User.objects.create_user(cd['name'], cd['email'], cd['password'])
+                login(request, user)
 
                 return redirect('home')
             except:
@@ -54,12 +53,14 @@ def login_view(request):
 
             cd = form.cleaned_data
 
-            account = Account.authenticate(cd['email'], cd['password'])
+            try:
+                user = User.objects.get(email=cd['email'])
+                user = authenticate(username=user.username, password=cd['password'])
+            except:
+                user = authenticate(username=cd['email'], password=cd['password'])
 
-            if account:
-
-                account.login_account(request)
-
+            if user:
+                login(request, user)
                 return redirect('home')
 
     context = {

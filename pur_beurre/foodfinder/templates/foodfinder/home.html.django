@@ -4,7 +4,7 @@
 
   {% if user.is_authenticated %}
 
-    <h1>Connecté en tant que <span>{{ user.account }}</span></h1>
+    <h1>Connecté en tant que <span>{{ user }}</span></h1>
 
     <a href="{% url 'logout_view' %}">Logout</a>
 
