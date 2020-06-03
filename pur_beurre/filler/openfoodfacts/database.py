@@ -2,7 +2,7 @@ import json
 import requests
 
 
-from foodfinder.modles import Food
+from foodfinder.models import Food
 
 
 class OFFSearch:

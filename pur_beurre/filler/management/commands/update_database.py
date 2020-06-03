@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from .openfoodfacts.database import OFFDatabase
+from filler.openfoodfacts.database import OFFDatabase
 
 class Command(BaseCommand):
 
@@ -30,5 +30,5 @@ class Command(BaseCommand):
             else:
                 raise CommandError('Error while updating database')
 
-        else
+        else:
             raise CommandError('OpenFoodFacts not reachable')
