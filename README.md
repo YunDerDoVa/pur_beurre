@@ -21,3 +21,8 @@ https://github.com/GoswaTech/pur_beurre
 - Auth App
 - Abstract (ou Base) User
 - Django AllAuth
+
+## Questions
+
+- Command.add_argument()
+- Django Mock

@@ -2,6 +2,9 @@ import json
 import requests
 
 
+from foodfinder.modles import Food
+
+
 class OFFSearch:
 
     number_of_pages = None
@@ -52,10 +55,16 @@ class OFFDatabase:
         """ This method update django's database. """
 
         for search in self.searchs:
-            for product in search:
+            for product in search.dict:
                 ## Add product in database
-                pass
+                Food.objects.create(
+                    name=product['name']
+                )
 
+    def drop_django(self):
+        """ This method drop django database """
+
+        Food.objects.drop()
 
     def _get_categories(self, *argv):
         """ This private method retrun a list of String with the name of all
@@ -87,7 +96,8 @@ class OFFDatabase:
         """ This method make a search and return a json. """
         pass
 
-    def _json_to_dict(self):
+    def _json_to_dict(self, page):
         """ This method convert a json to a dict more friendly with python and
         return the dict. """
-        pass
+
+        return json.loads(page)

@@ -10,9 +10,25 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
+        # Init OFFDatabase
         database = OFFDatabase()
 
+        # Test Connexion
         if database.get_connexion():
-            pass
+
+            # Update Database
+            database.update_database()
+
+            # Test Database
+            if len(database.searchs) > 0:
+                try:
+                    # Update Django
+                    database.update_django()
+                    self.stdout.write(self.style.SUCCESS('Django Updated'))
+                except:
+                    raise CommandError('Django not Updated')
+            else:
+                raise CommandError('Error while updating database')
+
         else
             raise CommandError('OpenFoodFacts not reachable')
