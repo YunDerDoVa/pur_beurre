@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'foodfinder.apps.FoodfinderConfig',
     'mugauth.apps.MugauthConfig',
+    'filler.apps.FillerConfig',
 ]
 
 MIDDLEWARE = [
