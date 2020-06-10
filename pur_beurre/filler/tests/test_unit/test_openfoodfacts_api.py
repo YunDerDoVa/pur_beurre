@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 
 from filler.openfoodfacts.database import OFFDatabase, OFFSearch
@@ -17,16 +17,15 @@ class OpenFoodFactsTestCase(TestCase):
 
         for i in range(3):
             self.SEARCHS.append(
-                OFFSearch(1, 1).set_dict({'name': 'TestFood'})
+                OFFSearch(i, 'Test', 1, 1).set_dict({'name': 'TestFood'})
             )
 
-    def test_get_connexion(self):
+    @patch('filler.openfoodfacts.database.OFFDatabase')
+    def test_get_database(self, mock_offdatabase):
 
-        self.assertEqual(type(True), type(self.database.get_connexion()))
+        mock_offdatabase._fetch_categories.return_value = self.SEARCHS
 
-    def test_get_database(self):
-
-        self.database._fetch_categories = MagicMock(return_value=self.SEARCHS)
+        #self.database._fetch_categories = MagicMock(return_value=self.SEARCHS)
 
         self.database.update_database()
 

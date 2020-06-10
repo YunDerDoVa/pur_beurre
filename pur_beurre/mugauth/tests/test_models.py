@@ -22,3 +22,6 @@ class AccountTestCase(TestCase):
     def test_authenticate(self):
         account = authenticate(username=self.USERNAME, password=self.PASSWORD)
         self.assertEqual(account.username, self.USERNAME)
+
+    def test_fields(self):
+        pass

@@ -25,4 +25,13 @@ https://github.com/GoswaTech/pur_beurre
 ## Questions
 
 - Command.add_argument()
+  - Voir épingles Discord
+  - argparse
 - Django Mock
+  - patch()
+
+## 04 Juin
+
+- RegisterForm.EmailField
+- Test Auth : test_fields
+- Food Model
