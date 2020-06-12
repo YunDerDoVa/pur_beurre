@@ -13,6 +13,7 @@ class OpenFoodFactsTestCase(TestCase):
     SEARCHS = []
     PRODUCT = {
         'product_name': 'Name',
+        'code': '0000000',
         'nutriments': {'fat': 1.2},
         'categories_tags': ['Chocolat', 'Sugar'],
         'img_front_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',

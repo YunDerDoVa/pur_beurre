@@ -42,6 +42,7 @@ class Food(models.Model):
     def __init__(self, *args, **kwargs):
         super(models.Model, self).__init__(self, *args, **kwargs)
 
+    code = models.CharField(max_length=15, unique=True)
     name = models.CharField(max_length=127)
     nutriments = models.CharField(max_length=2048)
     img_front_url = models.URLField()

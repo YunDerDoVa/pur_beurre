@@ -73,7 +73,7 @@ class OFFDatabase:
         for search in self.searchs:
 
             try:
-                food = Food.objects.get(name=product['name'])
+                food = Food.objects.get(code=product['code'])
                 food.name = product['name']
                 food.nutriments = product['nutriments']
                 food.img_front_url = product['img_front_url']
@@ -81,6 +81,7 @@ class OFFDatabase:
                 food.nutriscore = product['nutriscore']
             except:
                 food = Food.objects.create(
+                    code=product['code'],
                     name=product['name'],
                     nutriments=product['nutriments'],
                     img_front_url=product['img_front_url'],
@@ -94,6 +95,10 @@ class OFFDatabase:
                 except:
                     category = Category.objects.create(name=category_name)
                     food.category_set.add(category)
+
+                category.save()
+
+            food.save()
 
 
     def drop_django(self):
