@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, create_autospec
 
 
 from filler.openfoodfacts.database import OFFDatabase, OFFSearch
@@ -10,45 +10,65 @@ from foodfinder.models import Food
 # Create your tests here.
 class OpenFoodFactsTestCase(TestCase):
 
-    SEARCHS = []
     PRODUCT = {
-        'product_name': 'Name',
-        'code': '0000000',
+        'product_name': 'TestFood',
+        'code': '1024',
         'nutriments': {'fat': 1.2},
         'categories_tags': ['Chocolat', 'Sugar'],
-        'img_front_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
-        'img_back_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
-        'nutriscore_data': {'nutriscore_score': 1},
+        'image_front_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'image_nutrition_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'nutriscore_grade': 'a',
+    }
+    PRODUCT_2 = {
+        'product_name': 'TestFood',
+        'code': '1025',
+        'nutriments': {'fat': 1.2},
+        'categories_tags': ['Chocolat', 'Sugar'],
+        'image_front_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'image_nutrition_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'nutriscore_grade': 'a',
+    }
+    PRODUCT_3 = {
+        'product_name': 'TestFood',
+        'code': '1026',
+        'nutriments': {'fat': 1.2},
+        'categories_tags': ['Chocolat', 'Sugar'],
+        'image_front_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'image_nutrition_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'nutriscore_grade': 'a',
+    }
+    PRODUCT_SET = [PRODUCT, PRODUCT_2, PRODUCT_3]
+    PAGE = {
+        'products': PRODUCT_SET,
+        'count': 3,
     }
 
     def setUp(self):
-        for i in range(3):
-            self.SEARCHS.append(
-                OFFSearch(i, 'Test', 1, 1).set_product(self.PRODUCT)
-            )
 
-    @patch('filler.openfoodfacts.database.OFFDatabase')
-    def test_get_database(self, mock_offdatabase):
+        self.SEARCHS = []
+        forloop = 0
 
-        database = OFFDatabase()
+        for product in self.PRODUCT_SET:
+            search = OFFSearch(forloop, 'Test', 1, 1)
+            search.set_product(product)
 
-        mock_offdatabase._fetch_categories.return_value = self.SEARCHS
+            self.SEARCHS.append(search)
+            forloop += 1
 
-        #self.database._fetch_categories = MagicMock(return_value=self.SEARCHS)
+        self.database = OFFDatabase()
 
+    def test_update_database(self):
+
+        self.database._request = MagicMock(return_value=self.PAGE)
         self.database.update_database(test=True)
 
-        self.assertEqual(self.SEARCHS, database.searchs)
+        self.assertEqual(len(self.database.searchs), 3)
 
-    @patch('filler.openfoodfacts.database.OFFDatabase')
-    def test_update_django(self, mock_offdatabase):
+    def test_update_django(self):
 
-        database = OFFDatabase()
-
-        mock_offdatabase._fetch_categories.return_value = self.SEARCHS
-
-        database.update_database(test=True)
-        database.update_django()
+        self.database._request = MagicMock(return_value=self.PAGE)
+        self.database.update_database(test=True)
+        self.database.update_django()
 
         query = Food.objects.filter(name='TestFood')
 

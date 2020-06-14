@@ -2,16 +2,10 @@ import json
 import requests
 
 
-from foodfinder.models import Food
+from foodfinder.models import Food, Category, Nutriment
 
 
 class OFFSearch:
-
-    category_index = None
-    category = None
-    number_of_pages = None
-    number_of_products = None
-    dict = None
 
     def __init__(self, category_index, category, pages, products):
 
@@ -19,29 +13,36 @@ class OFFSearch:
         self.category = category
         self.number_of_pages = pages
         self.number_of_products = products
+        self.dict = {}
 
     def _product_to_food_dict(self, product):
         """ This method convert a product to a food_dict and
         return this dict. """
 
         dict = {}
-        nutriscore_tab = ['A', 'B', 'C', 'D', 'E']
 
+        dict['code'] = product['code']
         dict['name'] = product['product_name']
-        dict['nutriments'] = product['nutriments']
+        dict['nutriment_set'] = product['nutriments']
         dict['category_set'] = product['categories_tags']
         dict['img_front_url'] = product['image_front_thumb_url']
         dict['img_back_url'] = product['image_nutrition_thumb_url']
-        dict['nutriscore'] = nutriscore_tab[product['nutriscore_data']['nutriscore_score']]
+        dict['nutriscore'] = product['nutriscore_grade'].upper()
 
         return dict
 
     def set_product(self, product):
+        """ This method set the product in self.dict variable and return
+        True if it's a success, False otherwise. """
 
         try:
             self.dict = self._product_to_food_dict(product)
+            return True
         except:
-            pass
+            return False
+
+    def __str__(self):
+        return '<class: OFFSearch>, ' + str(self.category) + ' : ' + str(self.category_index + 1) + '/' + str(self.number_of_products)
 
 
 class OFFDatabase:
@@ -63,40 +64,56 @@ class OFFDatabase:
         """ This method update the self.searchs after few minutes. """
 
         if kwargs.pop('test', False):
-            self.searchs = self._fetch_categories(test=True)
+            self._fetch_categories(test=True)
         else:
-            self.searchs = self._fetch_categories()
+            self._fetch_categories()
 
     def update_django(self):
         """ This method update django's database. """
 
+        print('\nUpdating Django... (' + str(len(self.searchs)) + ' items)')
+
         for search in self.searchs:
 
-            try:
-                food = Food.objects.get(code=product['code'])
-                food.name = product['name']
-                food.nutriments = product['nutriments']
-                food.img_front_url = product['img_front_url']
-                food.img_back_url = product['img_back_url']
-                food.nutriscore = product['nutriscore']
-            except:
+            food = Food.objects.filter(code=search.dict['code']).first()
+
+            # Get or Create Food
+            if food != None:
+                food.name = search.dict['name']
+                food.img_front_url = search.dict['img_front_url']
+                food.img_back_url = search.dict['img_back_url']
+                food.nutriscore = search.dict['nutriscore']
+            else:
                 food = Food.objects.create(
-                    code=product['code'],
-                    name=product['name'],
-                    nutriments=product['nutriments'],
-                    img_front_url=product['img_front_url'],
-                    img_back_url=product['img_back_url'],
-                    nutriscore=product['nutriscore'],
+                    code=search.dict['code'],
+                    name=search.dict['name'],
+                    img_front_url=search.dict['img_front_url'],
+                    img_back_url=search.dict['img_back_url'],
+                    nutriscore=search.dict['nutriscore'],
                 )
 
-            for category_name in product['category_set']:
-                try:
-                    category = Category.objects.get(name=category_name, food_set__contains_id=food.id)
-                except:
+            food.save()
+            print('Food : ' + str(food))
+
+            # Get or Create Category
+            for category_name in search.dict['category_set']:
+
+                category = Category.objects.filter(name=category_name).first()
+                if category == None:
                     category = Category.objects.create(name=category_name)
+
+                if category not in food.category_set.all():
                     food.category_set.add(category)
 
-                category.save()
+            # Get or Create Nutriment
+            for nutriment_name in search.dict['nutriment_set']:
+
+                nutriment = Nutriment.objects.filter(name=nutriment_name).first()
+                if nutriment == None:
+                    Nutriment.objects.create(name=nutriment_name)
+
+                if nutriment not in food.nutriment_set.all():
+                    food.nutriment_set.add(nutriment)
 
             food.save()
 
@@ -154,19 +171,18 @@ class OFFDatabase:
 
         is_test = kwargs.pop('test', False)
 
+        page_size = 100
         categories = self._get_categories()
 
-        page_size = 100
-
         if is_test:
-            page_size = 10
+            page_size = 3
             categories = ['Chocolat']
 
         for category in categories:
             beefeye = self._request(search=category)
 
             if is_test:
-                beefeye['count'] = beefeye['count'] = 10
+                beefeye['count'] = 3
 
             number_of_pages = int(int(beefeye["count"]) / page_size)
             number_of_products = int(beefeye["count"])
@@ -177,16 +193,20 @@ class OFFDatabase:
 
                 for product_index in range(len(page['products'])):
                     product = page['products'][product_index]
-                    print('Handling ' + product['product_name'])
+                    print('\t-\tHandling ' + product['product_name'])
                     category_index = page_index*page_size + product_index
 
                     off_search = OFFSearch(category_index, category, number_of_pages, number_of_products)
-                    off_search.set_product(product)
 
-                    print(off_search.dict)
+                    print('\t-\t' + 'OFFSearch : ' +  str(off_search))
 
-                    if off_search.dict is not None:
+                    if off_search.set_product(product):
                         self.searchs.append(off_search)
+                        print('\t-\t' + 'In self.searchs')
+                    else:
+                        print('\t-\t' + 'Error while setting product')
+
+                    print('\n')
 
 
     def _search(self):
