@@ -41,7 +41,6 @@ class Food(models.Model):
 
     code = models.CharField(max_length=15, unique=True)
     name = models.CharField(max_length=127)
-    nutriment_set = models.ManyToManyField('Nutriment')
     img_front_url = models.URLField()
     img_back_url = models.URLField()
     nutriscore = models.CharField(max_length=7, choices=NutriscoreChoices.choices, default=None, null=True)
@@ -50,6 +49,16 @@ class Food(models.Model):
 
     def __str__(self):
         return self.name + ' (code:' + self.code + ')'
+
+
+class FoodNutriment(models.Model):
+
+    food = models.ForeignKey('Food', on_delete=models.CASCADE)
+    nutriment = models.ForeignKey('Nutriment', on_delete=models.CASCADE)
+    quantity = models.FloatField()
+
+    def __str__(self):
+        return str(self.nutriment) + ' (' + str(self.quantity) + ')'
 
 
 class Nutriment(models.Model):
@@ -65,4 +74,4 @@ class Category(models.Model):
     name = models.CharField(max_length=127)
 
     def __str__(self):
-        return self.name + '(' + str(self.food_set.count()) + ' items)'
+        return self.name + ' (' + str(self.food_set.count()) + ' items)'

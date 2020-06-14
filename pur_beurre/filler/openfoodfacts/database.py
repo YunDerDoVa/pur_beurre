@@ -2,7 +2,7 @@ import json
 import requests
 
 
-from foodfinder.models import Food, Category, Nutriment
+from foodfinder.models import Food, Category, Nutriment, FoodNutriment
 
 
 class OFFSearch:
@@ -24,7 +24,7 @@ class OFFSearch:
         dict['code'] = product['code']
         dict['name'] = product['product_name']
         dict['nutriment_set'] = product['nutriments']
-        dict['category_set'] = product['categories']
+        dict['category_set'] = product['categories_tags']
         dict['img_front_url'] = product['image_front_thumb_url']
         dict['img_back_url'] = product['image_nutrition_thumb_url']
         dict['nutriscore'] = product['nutriscore_grade'].upper()
@@ -103,17 +103,31 @@ class OFFDatabase:
                 if category not in food.category_set.all():
                     food.category_set.add(category)
 
-            # Get or Create Nutriment
-            for nutriment_name in search.dict['nutriment_set']:
+            # Get or Create Nutriment and Attach to Food
+            for nutriment_name, nutriment_quantity in search.dict['nutriment_set'].items():
 
-                if nutriment_name[:3] == 'fr:':
-
+                try:
                     nutriment = Nutriment.objects.filter(name=nutriment_name).first()
                     if nutriment == None:
-                        Nutriment.objects.create(name=nutriment_name)
+                        nutriment = Nutriment.objects.create(name=nutriment_name)
 
-                    if nutriment not in food.nutriment_set.all():
-                        food.nutriment_set.add(nutriment)
+                    # Attach Nutriment to Food
+                    food_nutriment = FoodNutriment.objects.filter(nutriment=nutriment, food=food).first()
+                    if food_nutriment == None:
+                        food_nutriment = FoodNutriment.objects.create(
+                            nutriment=nutriment, food=food,
+                            quantity=nutriment_quantity)
+                    else:
+                        food_nutriment.quantity = nutriment_quantity
+                        food_nutriment.save()
+
+                    print('\t-\t-\t' + 'Nutriment added')
+                except:
+                    print('\t-\t-\t' + 'Nutriment not allowed')
+
+            # Attach Nutriment to Food
+            for nutriment in food.nutriment_set.all():
+                FoodNutriment.objects.create(food=food, nutriment=nutriment)
 
             # Save Food
             food.save()
@@ -124,7 +138,10 @@ class OFFDatabase:
     def drop_django(self):
         """ This method drop django database """
 
-        Food.objects.drop()
+        Food.objects.all().delete()
+        Category.objects.all().delete()
+        Nutriment.objects.all().delete()
+
 
     def _request(self, **kwargs):
         """ This method make a search and return a json. """
@@ -174,7 +191,7 @@ class OFFDatabase:
 
         is_test = kwargs.pop('test', False)
 
-        page_size = 1000
+        page_size = 20
         categories = self._get_categories()
 
         if is_test:
@@ -187,8 +204,8 @@ class OFFDatabase:
             if is_test:
                 beefeye['count'] = 3
             else:
-                if beefeye['count'] > 1000:
-                    beefeye['count'] = 1000
+                if int(beefeye['count']) > 20:
+                    beefeye['count'] = 20
 
             number_of_pages = int(int(beefeye["count"]) / page_size)
             number_of_products = int(beefeye["count"])
