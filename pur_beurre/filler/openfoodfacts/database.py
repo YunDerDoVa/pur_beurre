@@ -24,7 +24,7 @@ class OFFSearch:
         dict['code'] = product['code']
         dict['name'] = product['product_name']
         dict['nutriment_set'] = product['nutriments']
-        dict['category_set'] = product['categories_tags']
+        dict['category_set'] = product['categories']
         dict['img_front_url'] = product['image_front_thumb_url']
         dict['img_back_url'] = product['image_nutrition_thumb_url']
         dict['nutriscore'] = product['nutriscore_grade'].upper()
@@ -83,6 +83,7 @@ class OFFDatabase:
                 food.img_front_url = search.dict['img_front_url']
                 food.img_back_url = search.dict['img_back_url']
                 food.nutriscore = search.dict['nutriscore']
+                food.save()
             else:
                 food = Food.objects.create(
                     code=search.dict['code'],
@@ -91,9 +92,6 @@ class OFFDatabase:
                     img_back_url=search.dict['img_back_url'],
                     nutriscore=search.dict['nutriscore'],
                 )
-
-            food.save()
-            print('Food : ' + str(food))
 
             # Get or Create Category
             for category_name in search.dict['category_set']:
@@ -108,14 +106,19 @@ class OFFDatabase:
             # Get or Create Nutriment
             for nutriment_name in search.dict['nutriment_set']:
 
-                nutriment = Nutriment.objects.filter(name=nutriment_name).first()
-                if nutriment == None:
-                    Nutriment.objects.create(name=nutriment_name)
+                if nutriment_name[:3] == 'fr:':
 
-                if nutriment not in food.nutriment_set.all():
-                    food.nutriment_set.add(nutriment)
+                    nutriment = Nutriment.objects.filter(name=nutriment_name).first()
+                    if nutriment == None:
+                        Nutriment.objects.create(name=nutriment_name)
 
+                    if nutriment not in food.nutriment_set.all():
+                        food.nutriment_set.add(nutriment)
+
+            # Save Food
             food.save()
+
+            print('\t-\t' + str(search))
 
 
     def drop_django(self):
@@ -171,7 +174,7 @@ class OFFDatabase:
 
         is_test = kwargs.pop('test', False)
 
-        page_size = 100
+        page_size = 1000
         categories = self._get_categories()
 
         if is_test:
@@ -183,6 +186,9 @@ class OFFDatabase:
 
             if is_test:
                 beefeye['count'] = 3
+            else:
+                if beefeye['count'] > 1000:
+                    beefeye['count'] = 1000
 
             number_of_pages = int(int(beefeye["count"]) / page_size)
             number_of_products = int(beefeye["count"])
@@ -193,7 +199,7 @@ class OFFDatabase:
 
                 for product_index in range(len(page['products'])):
                     product = page['products'][product_index]
-                    print('\t-\tHandling ' + product['product_name'])
+                    #print('\t-\tHandling ' + product['product_name'])
                     category_index = page_index*page_size + product_index
 
                     off_search = OFFSearch(category_index, category, number_of_pages, number_of_products)
