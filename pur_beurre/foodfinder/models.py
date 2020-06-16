@@ -29,6 +29,9 @@ class SearchAlgorythm(models.Model):
         default=AlgorythmChoices.BY_FAT,
     )
 
+    def __str__(self):
+        return self.algorythm + ' (' + self.user.username + ')'
+
 class Food(models.Model):
 
     class NutriscoreChoices(models.TextChoices):
