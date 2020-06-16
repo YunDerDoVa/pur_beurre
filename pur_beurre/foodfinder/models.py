@@ -53,7 +53,7 @@ class Food(models.Model):
 
 class FoodNutriment(models.Model):
 
-    food = models.ForeignKey('Food', on_delete=models.CASCADE)
+    food = models.ForeignKey('Food', on_delete=models.CASCADE, related_name='food_nutriment_set')
     nutriment = models.ForeignKey('Nutriment', on_delete=models.CASCADE)
     quantity = models.FloatField()
 
