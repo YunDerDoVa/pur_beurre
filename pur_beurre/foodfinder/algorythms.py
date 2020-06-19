@@ -15,6 +15,9 @@ class Algorythm:
             if self.calcMatch(food, substitute):
                 substitutes.append(substitute)
 
+            if len(substitutes) >= 6:
+                break
+
         return substitutes
 
     def calcMatch(self, food, substitute):
