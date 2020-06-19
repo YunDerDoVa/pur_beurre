@@ -125,10 +125,6 @@ class OFFDatabase:
                 except:
                     print('\t-\t-\t' + 'Nutriment not allowed')
 
-            # Attach Nutriment to Food
-            for nutriment in food.nutriment_set.all():
-                FoodNutriment.objects.create(food=food, nutriment=nutriment)
-
             # Save Food
             food.save()
 
@@ -191,7 +187,7 @@ class OFFDatabase:
 
         is_test = kwargs.pop('test', False)
 
-        page_size = 20
+        page_size = 1000
         categories = self._get_categories()
 
         if is_test:
@@ -204,8 +200,8 @@ class OFFDatabase:
             if is_test:
                 beefeye['count'] = 3
             else:
-                if int(beefeye['count']) > 20:
-                    beefeye['count'] = 20
+                if int(beefeye['count']) > 5000:
+                    beefeye['count'] = 5000
 
             number_of_pages = int(int(beefeye["count"]) / page_size)
             number_of_products = int(beefeye["count"])

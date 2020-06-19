@@ -73,7 +73,7 @@ class BySalt(Algorythm):
 class ByNutriments(Algorythm):
 
     def calcMatch(self, food, substitute):
-        pass
+        return True
 
 class ByCategory(Algorythm):
 

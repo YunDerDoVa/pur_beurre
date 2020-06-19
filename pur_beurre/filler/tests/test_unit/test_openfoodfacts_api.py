@@ -14,7 +14,7 @@ class OpenFoodFactsTestCase(TestCase):
         'product_name': 'TestFood',
         'code': '1024',
         'nutriments': {'fat': 1.2},
-        'categories': ['Chocolat', 'Sugar'],
+        'categories_tags': ['Chocolat', 'Sugar'],
         'image_front_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'image_nutrition_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'nutriscore_grade': 'a',
@@ -23,7 +23,7 @@ class OpenFoodFactsTestCase(TestCase):
         'product_name': 'TestFood',
         'code': '1025',
         'nutriments': {'fat': 1.2},
-        'categories': ['Chocolat', 'Sugar'],
+        'categories_tags': ['Chocolat', 'Sugar'],
         'image_front_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'image_nutrition_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'nutriscore_grade': 'a',
@@ -32,7 +32,7 @@ class OpenFoodFactsTestCase(TestCase):
         'product_name': 'TestFood',
         'code': '1026',
         'nutriments': {'fat': 1.2},
-        'categories': ['Chocolat', 'Sugar'],
+        'categories_tags': ['Chocolat', 'Sugar'],
         'image_front_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'image_nutrition_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'nutriscore_grade': 'a',
@@ -41,7 +41,7 @@ class OpenFoodFactsTestCase(TestCase):
         'product_name': 'TestFood',
         'code': '1027',
         'nutriments': {'fat': 1.2},
-        'categories': ['Chocolat', 'Sugar'],
+        'categories_tags': ['Chocolat', 'Sugar'],
         'image_front_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'image_nutrition_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'nutriscore_grade': 'a',
@@ -81,12 +81,3 @@ class OpenFoodFactsTestCase(TestCase):
 
         query = Food.objects.filter(name='TestFood')
         self.assertEqual(len(self.SEARCHS), len(query))
-
-        #search = OFFSearch(3, 'Test', 1, 1)
-        #search.set_product(self.PRODUCT_4)
-        #self.database.searchs.append(search)
-
-        #self.update_django()
-
-        #query = Food.objects.filter(name='TestFood')
-        #self.assertEqual(len(self.SEARCHS), len(query))
