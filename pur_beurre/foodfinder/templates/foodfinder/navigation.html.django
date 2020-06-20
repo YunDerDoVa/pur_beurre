@@ -7,10 +7,9 @@
         <a class="navbar-brand js-scroll-trigger" href="{% url 'home' %}"><img id="brand_logo" src="{% static "foodfinder/res/logo_pur_beurre.png" %}" alt="Logo Pur Beurre"> Pur Beurre</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services"> <i class="fas fa-user"></i> </a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services"> <img class="icon" src="{% static "foodfinder/res/carotte.png" %}" alt="Carotte"> </a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services"> <i class="fas fa-sign-out-alt"></i> </a></li>
             </ul>
         </div>
     </div>
