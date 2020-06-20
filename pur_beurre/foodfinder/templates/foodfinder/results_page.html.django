@@ -9,10 +9,26 @@
 {% block middle %}
 
   <section class="page-section" id="substitutes">
-    {% for food in substitutes %}
-      {{ food.name }}
-      <br>
-    {% endfor %}
+
+    <div class="d-flex flex-columns justify-content-center align-items-center">
+      <h2>Vous pouvez remplacer cet aliment par :</h2>
+    </div>
+
+    <div id="results" class="container">
+      <div class="row">
+        {% for food in substitutes %}
+          <div class="col-12 col-md-4">
+            <div class="card substitute-card align-items-center">
+              <i class="nutriscore">{{ food.nutriscore }}</i>
+              <img src="{{ food.img_front_url }}" alt="">
+              <h3>{{ food.name }}</h3>
+              <a href="#"> <i class="far fa-save"></i> sauvegarder </a>
+            </div>
+          </div>
+          <br>
+        {% endfor %}
+      </div>
+    </div>
   </section>
 
 {% endblock middle %}
