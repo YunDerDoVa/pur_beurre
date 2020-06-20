@@ -1,20 +1,25 @@
 {% extends "base.html.django" %}
 
-{% block main %}
 
-  {% if user.is_authenticated %}
+{% block header %}
 
-    <h1>Connecté en tant que <span>{{ user }}</span></h1>
+  {% include "foodfinder/navigation.html.django" %}
+  {% include "foodfinder/masthead.html.django" %}
+  {% include "foodfinder/about.html.django" %}
 
-    <a href="{% url 'logout_view' %}">Logout</a>
+{% endblock header %}
 
-  {% else %}
+{% block middle %}
 
-    <h1>Connecte-toi</h1>
+  {% include "foodfinder/services.html.django" %}
+  {% include "foodfinder/portfolio.html.django" %}
+  {% include "foodfinder/call_to_action_1.html.django" %}
+  {% include "foodfinder/contact.html.django" %}
 
-    <a href="{% url 'login_view' %}">Login</a>
-    <a href="{% url 'register_view' %}">Register</a>
+{% endblock middle %}
 
-  {% endif %}
+{% block footer %}
 
-{% endblock main %}
+  {% include "foodfinder/footer.html.django" %}
+
+{% endblock footer %}

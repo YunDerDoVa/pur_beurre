@@ -1,14 +1,45 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>{% block title %}Pur Beurre{% endblock title %}</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta name="description" content="" />
+      <meta name="author" content="" />
+      <title>{% block title %}Pur Beurre{% endblock title %}</title>
+      <!-- Favicon-->
+      <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+      <!-- Font Awesome icons (free version)-->
+      <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+      <!-- Google fonts-->
+      <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+      <!-- Third party plugin CSS-->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+      <!-- Core theme CSS (includes Bootstrap)-->
+      {% block css %}
+        <link href="{% static "foodfinder/vendor/pur_beurre_template/css/styles.css" %}" rel="stylesheet" />
+      {% endblock css %}
   </head>
   <body>
 
-    <main>
-      {% block main %}{% endblock main %}
-    </main>
+    {% block header %}{% endblock header %}
+
+    {% block middle %}{% endblock middle %}
+
+    {% block footer %}{% endblock footer %}
+
+    {% block javascripts %}
+      <!-- Bootstrap core JS-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+      <!-- Third party plugin JS-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+      <!-- Core theme JS-->
+      <script src="{% static 'foodfinder/vendor/pur_beurre_template/js/scripts.js' %}"></script>
+    {% endblock javascripts %}
 
   </body>
 </html>
