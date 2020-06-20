@@ -9,7 +9,11 @@ from .algorythms import Algorythm
 # Create your views here.
 def home(request):
 
-    context = {}
+    form = SearchForm()
+
+    context = {
+        'form': form,
+    }
 
     return render(request, 'foodfinder/home.html.django', context)
 
@@ -25,9 +29,18 @@ def search(request):
 
         food = Food.objects.filter(name=search_term).first()
 
-        algorythm.search_substitutes(food)
+        substitutes = algorythm.search_substitutes(food)
 
-    context = {}
+    else:
+
+        form = SearchForm()
+
+
+    context = {
+        'form': form,
+        'food': food,
+        'substitutes': substitutes,
+    }
 
     # results : 2x3
     return render(request, 'foodfinder/results_page.html.django', context)

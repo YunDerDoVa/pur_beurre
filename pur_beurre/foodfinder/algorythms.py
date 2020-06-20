@@ -7,6 +7,8 @@ class Algorythm:
         pass
 
     def search_substitutes(self, food):
+        """ This method search substitutes of a food and return a array of 6.
+        Return None if no substitutes are found. """
 
         substitutes = []
 

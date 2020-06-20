@@ -1,0 +1,18 @@
+{% extends "base.html.django" %}
+
+{% block header %}
+
+  {% include "foodfinder/results_header.html.django" %}
+
+{% endblock header %}
+
+{% block middle %}
+
+  <section class="page-section" id="substitutes">
+    {% for food in substitutes %}
+      {{ food.name }}
+      <br>
+    {% endfor %}
+  </section>
+
+{% endblock middle %}

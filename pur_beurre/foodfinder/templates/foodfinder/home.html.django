@@ -3,7 +3,6 @@
 
 {% block header %}
 
-  {% include "foodfinder/navigation.html.django" %}
   {% include "foodfinder/masthead.html.django" %}
   {% include "foodfinder/about.html.django" %}
 
@@ -17,9 +16,3 @@
   {% include "foodfinder/contact.html.django" %}
 
 {% endblock middle %}
-
-{% block footer %}
-
-  {% include "foodfinder/footer.html.django" %}
-
-{% endblock footer %}

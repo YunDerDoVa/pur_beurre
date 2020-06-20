@@ -1,0 +1,44 @@
+$moules_frites: #345a61
+$biscuit_trempe: #e8a75d
+
+$title_font: "Open Sans", sans-serif
+$body_font: "Scope One", sans-serif
+
+body
+  min-height: 100vh
+
+*
+  font-family: $body_font !important
+
+h1, h2, h3, h4, h5, h6
+  font-family: $title_font !important
+
+
+#brand_logo
+  width: 32px
+  height: 32px
+  object-fit: contain
+  object-position: center
+
+header.substitutes-header
+
+  position: relative
+  height: 50vh
+
+  & img
+
+    width: 100%
+    height: 100%
+    object-fit: scale-down
+    object-fit: cover
+    object-position: center
+
+  & .title-box
+
+    z-index: 0
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.42)
