@@ -1,0 +1,19 @@
+{% extends "base.html.django" %}
+
+{% block header %}
+
+  {% include "foodfinder/headers/account_header.html.django" %}
+
+{% endblock header %}
+
+{% block middle %}
+
+  <section class="page-section" id="account">
+
+    <div class="d-flex justify-content-center">
+      <p>Email : {{ account.email }}</p>
+    </div>
+
+  </section>
+
+{% endblock middle %}

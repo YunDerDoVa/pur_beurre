@@ -1,0 +1,71 @@
+{% extends "base.html.django" %}
+
+{% block header %}
+
+  {% include "foodfinder/headers/food_header.html.django" %}
+
+{% endblock header %}
+
+{% block middle %}
+
+  <section class="page-section container" id="food">
+
+    <div class="row align-items-center">
+
+      <div class="col-12 col-md-6 my-3">
+
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          <h2>Nutriscore</h2>
+          <div class="d-flex justify-content-center">
+            {% if food.nutriscore == "A" %} <b>A</b> {% else %} A {% endif %}
+            {% if food.nutriscore == "B" %} <b>B</b> {% else %} B {% endif %}
+            {% if food.nutriscore == "C" %} <b>C</b> {% else %} C {% endif %}
+            {% if food.nutriscore == "D" %} <b>D</b> {% else %} D {% endif %}
+            {% if food.nutriscore == "E" %} <b>E</b> {% else %} E {% endif %}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-12 col-md-6 my-3">
+
+        <h2>
+          Repères nutritionnels pour 100g
+        </h2>
+
+        <div class="d-flex flex-wrap">
+          <img src="{{ food.img_front_url }}" alt="Food Image">
+          <img src="{{ food.img_back_url }}" alt="Food Nutritiments Image">
+        </div>
+
+
+      </div>
+
+      <div class="col-12 text-center my-3">
+        <a href="https://world.openfoodfacts.org/product/{{ food.code }}" target="_blank">
+          <b>Voir la fiche d'OpenFoodFacts</b>
+        </a>
+      </div>
+
+    </div>
+
+    <div id="results" class="container">
+      <div class="row">
+        {% for food in substitutes %}
+          <div class="col-12 col-md-4">
+            <div class="card substitute-card align-items-center">
+              <i class="nutriscore">{{ food.nutriscore }}</i>
+              <a href="{% url 'food_page' id=food.id %}">
+                <img src="{{ food.img_front_url }}" alt="{{ food.name }}">
+              </a>
+              <h3>{{ food.name }}</h3>
+              <a href="#"> <i class="far fa-save"></i> sauvegarder </a>
+            </div>
+          </div>
+          <br>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+{% endblock middle %}

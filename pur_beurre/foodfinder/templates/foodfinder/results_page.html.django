@@ -2,7 +2,7 @@
 
 {% block header %}
 
-  {% include "foodfinder/results_header.html.django" %}
+  {% include "foodfinder/headers/results_header.html.django" %}
 
 {% endblock header %}
 
@@ -10,7 +10,7 @@
 
   <section class="page-section" id="substitutes">
 
-    <div class="d-flex flex-columns justify-content-center align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-center">
       <h2>Vous pouvez remplacer cet aliment par :</h2>
     </div>
 
@@ -20,7 +20,9 @@
           <div class="col-12 col-md-4">
             <div class="card substitute-card align-items-center">
               <i class="nutriscore">{{ food.nutriscore }}</i>
-              <img src="{{ food.img_front_url }}" alt="">
+              <a href="{% url 'food_page' code=food.code %}">
+                <img src="{{ food.img_front_url }}" alt="{{ food.name }}">
+              </a>
               <h3>{{ food.name }}</h3>
               <a href="#"> <i class="far fa-save"></i> sauvegarder </a>
             </div>

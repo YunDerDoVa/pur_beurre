@@ -10,9 +10,6 @@
 
 {% block middle %}
 
-  {% include "foodfinder/services.html.django" %}
-  {% include "foodfinder/portfolio.html.django" %}
-  {% include "foodfinder/call_to_action_1.html.django" %}
   {% include "foodfinder/contact.html.django" %}
 
 {% endblock middle %}

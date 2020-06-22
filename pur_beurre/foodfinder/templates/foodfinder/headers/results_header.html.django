@@ -1,0 +1,7 @@
+<!-- Masthead-->
+<header class="substitutes-header">
+    <img src="{{ food.img_front_url }}" alt="Food Image">
+    <div class="title-box d-flex justify-content-center align-items-center">
+      <h1>{{ food.name }}</h1>
+    </div>
+</header>

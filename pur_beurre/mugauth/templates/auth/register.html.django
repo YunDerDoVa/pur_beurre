@@ -1,4 +1,4 @@
-{% extends "base.html.django" %}
+{% extends "auth/base.html.django" %}
 
 
 {% block main %}

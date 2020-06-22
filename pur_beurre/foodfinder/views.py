@@ -47,3 +47,24 @@ def search(request):
 
     # results : 2x3
     return render(request, 'foodfinder/results_page.html.django', context)
+
+def food_page(request, code):
+
+    form = SearchForm()
+
+    food = Food.objects.get(code=code)
+
+    context = {
+        'form': form,
+        'food': food,
+    }
+
+    return render(request, 'foodfinder/food_page.html.django', context)
+
+def account_page(request):
+
+    context = {
+        'account': request.user,
+    }
+
+    return render(request, 'foodfinder/account_page.html.django', context)
