@@ -53,6 +53,16 @@ class Food(models.Model):
     def __str__(self):
         return self.name + ' (code:' + self.code + ')'
 
+    @staticmethod
+    def get_food_by_search_term(search_term):
+
+        food = Food.objects.filter(name=search_term).first()
+
+        if food is None:
+            food = Food.objects.filter(name__icontains=search_term).first()
+
+        return food
+
 
 class FoodNutriment(models.Model):
 

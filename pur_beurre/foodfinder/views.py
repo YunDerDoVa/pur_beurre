@@ -27,7 +27,10 @@ def search(request):
 
         algorythm = Algorythm.get_algorythm_by_classname('ByFat')
 
-        food = Food.objects.filter(name=search_term).first()
+        food = Food.get_food_by_search_term(search_term)
+
+        #if food is None:
+        #    return Http404('This food is don\'t exists in our database. We are sorry...')
 
         substitutes = algorythm.search_substitutes(food)
 
