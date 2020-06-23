@@ -1,5 +1,7 @@
 {% extends "base.html.django" %}
 
+{% load static %}
+
 
 {% block header %}
 
@@ -19,14 +21,16 @@
     <div id="favors" class="container">
       <div class="row">
         {% for favor in favors %}
-          <div class="col-12 col-md-4">
+          <div id="favor_{{ favor.id }}" class="col-12 col-md-4">
             <div class="card substitute-card align-items-center">
               <i class="nutriscore">{{ favor.food.nutriscore }}</i>
               <a href="{% url 'food_page' code=favor.food.code %}">
                 <img src="{{ favor.food.img_front_url }}" alt="{{ favor.food.name }}">
               </a>
               <h3>{{ favor.food.name }}</h3>
-              <!--a href="#"> <i class="fa fa-trash"></i> supprimer </a-->
+              <a href="javascript:del_favor('favor_{{ favor.id }}', '{% url 'del_favor' favor_id=favor.id %}');">
+                <i class="fa fa-trash"></i> supprimer
+              </a>
             </div>
           </div>
           <br>
@@ -36,3 +40,21 @@
   </section>
 
 {% endblock middle %}
+
+
+{% block footer %}
+
+  <div id="del_food_alerte">
+    <p>Supprimé des favoris !</p>
+  </div>
+
+{% endblock footer %}
+
+
+{% block javascripts %}
+
+  {{ block.super }}
+
+  <script src="{% static 'foodfinder/js/ajax.js' %}" type="text/javascript"></script>
+
+{% endblock javascripts %}

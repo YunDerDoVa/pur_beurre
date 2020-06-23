@@ -33,3 +33,15 @@ def add_favor(request, food_code):
         json['success'] = True
 
     return JsonResponse(json)
+
+def del_favor(request, favor_id):
+
+    json = {'success': False}
+
+    favor = Favor.objects.get(id=favor_id)
+
+    if favor is not None:
+        favor.delete()
+        json['success'] = True
+
+    return JsonResponse(json)

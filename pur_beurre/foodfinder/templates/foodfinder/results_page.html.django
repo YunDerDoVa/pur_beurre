@@ -21,14 +21,14 @@
     <div id="results" class="container">
       <div class="row">
         {% for food in substitutes %}
-          <div class="col-12 col-md-4">
+          <div id="food_{{ food.id }}" class="col-12 col-md-4">
             <div class="card substitute-card align-items-center">
               <i class="nutriscore">{{ food.nutriscore }}</i>
               <a href="{% url 'food_page' code=food.code %}">
                 <img src="{{ food.img_front_url }}" alt="{{ food.name }}">
               </a>
               <h3>{{ food.name }}</h3>
-              <a href="javascript:add_favor('{% url 'add_favor' food_code=food.code %}');"> <i class="far fa-save"></i> sauvegarder </a>
+              <a href="javascript:add_favor('food_{{ food.id }}', '{% url 'add_favor' food_code=food.code %}');"> <i class="far fa-save"></i> sauvegarder </a>
             </div>
           </div>
           <br>

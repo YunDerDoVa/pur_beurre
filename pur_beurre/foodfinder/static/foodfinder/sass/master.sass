@@ -28,6 +28,21 @@ nav img.icon
   object-position: center
 
 
+// Template Edit
+a:hover
+  color: $biscuit_trempe !important
+
+a
+  color: $biscuit_trempe
+
+.bg-primary
+  background-color: $biscuit_trempe !important
+
+hr.divider
+
+  border-color: $biscuit_trempe
+
+
 // Headers
 header.substitutes-header, header.account-header, header.favors-header
 
@@ -55,6 +70,34 @@ header.substitutes-header, header.account-header, header.favors-header
 
 
 // Home
+#masthead
+
+  & form.search-form
+
+    height: 64px
+    margin: auto
+
+    display: flex
+
+    border-radius: 6px
+    overflow: hidden
+
+    font-size: 32px
+
+    & input
+
+      width: 100%
+      padding: 8px 16px
+
+    & button
+
+      padding: 8px 16px
+
+      background-color: $biscuit_trempe
+      color: white
+      font-weight: 900
+      text-transform: uppercase
+
 #about
 
   & .remy-and-colette img
@@ -109,7 +152,7 @@ header.substitutes-header, header.account-header, header.favors-header
     object-fit: cover
     object-position: center
 
-#add_food_alerte
+#add_food_alerte, #del_food_alerte
 
   z-index: 99
   position: fixed
