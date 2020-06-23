@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('foodfinder.urls')),
     path('auth/', include('mugauth.urls')),
+    path('favor/', include('favor.urls')),
 ]

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'foodfinder.apps.FoodfinderConfig',
     'mugauth.apps.MugauthConfig',
     'filler.apps.FillerConfig',
+    'favor.apps.FavorConfig',
 ]
 
 MIDDLEWARE = [

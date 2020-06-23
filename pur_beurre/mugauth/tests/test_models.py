@@ -13,7 +13,7 @@ class AccountTestCase(TestCase):
     PASSWORD = 'password'
 
     def setUp(self):
-        Account.objects.create_user(username=self.USERNAME, email='test@email.com', password='password')
+        Account.objects.create_user(username=self.USERNAME, email=self.EMAIL, password=self.PASSWORD)
 
     def test_auth_user_model(self):
         model = settings.AUTH_USER_MODEL
