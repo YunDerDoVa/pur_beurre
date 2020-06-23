@@ -61,6 +61,21 @@ class Food(models.Model):
         if food is None:
             food = Food.objects.filter(name__icontains=search_term).first()
 
+            if food is None:
+                splited_search_term = search_term.split(' ')
+
+                foods = None
+
+                for term in splited_search_term:
+                    if foods is None:
+                        foods = Food.objects.filter(name__icontains=term)
+                    else:
+                        intersection = foods.intersection(Food.objects.filter(name__icontains=term))
+                        if intersection.count() > 0:
+                            foods = intersection
+
+                    food = foods.first()
+
         return food
 
 

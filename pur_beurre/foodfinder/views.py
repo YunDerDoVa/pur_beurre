@@ -25,7 +25,7 @@ def search(request):
 
         search_term = form.get_search_term()
 
-        algorythm = Algorythm.get_algorythm_by_classname('ByFat')
+        algorythm = Algorythm.get_algorythm_by_classname('ByCategory')
 
         food = Food.get_food_by_search_term(search_term)
 
