@@ -200,8 +200,8 @@ class OFFDatabase:
             if is_test:
                 beefeye['count'] = 3
             else:
-                if int(beefeye['count']) > 5000:
-                    beefeye['count'] = 5000
+                if int(beefeye['count']) > 2000:
+                    beefeye['count'] = 2000
 
             number_of_pages = int(int(beefeye["count"]) / page_size)
             number_of_products = int(beefeye["count"])
