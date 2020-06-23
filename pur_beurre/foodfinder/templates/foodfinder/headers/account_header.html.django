@@ -1,5 +1,5 @@
 <!-- Masthead-->
-<header class="substitutes-header">
+<header class="account-header">
     <img src="https://source.unsplash.com/random/" alt="Food Image">
     <div class="title-box d-flex justify-content-center align-items-center">
       <h1>{{ account.username }}</h1>

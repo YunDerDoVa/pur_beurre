@@ -1,4 +1,5 @@
 from .models import Food
+from favor.models import Favor
 
 
 class Algorythm:

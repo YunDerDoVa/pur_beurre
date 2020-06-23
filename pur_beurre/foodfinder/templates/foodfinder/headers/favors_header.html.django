@@ -1,0 +1,7 @@
+<!-- Masthead-->
+<header class="favors-header">
+    <img src="https://source.unsplash.com/random/" alt="Image">
+    <div class="title-box d-flex justify-content-center align-items-center">
+      <h1>Favoris</h1>
+    </div>
+</header>

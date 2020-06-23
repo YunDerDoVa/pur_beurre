@@ -13,14 +13,14 @@ def favors(request):
 
     form = SearchForm()
 
-    favors = Favor.objets.filter(account=request.user).all()
+    favors = Favor.objects.filter(account=request.user).order_by('date').all()
 
     context = {
         'form': form,
         'favors': favors,
     }
 
-    return render(request, 'foodfinder/favor_page.html.django', context)
+    return render(request, 'foodfinder/favors_page.html.django', context)
 
 def add_favor(request, food_code):
 

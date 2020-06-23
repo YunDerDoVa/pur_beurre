@@ -28,19 +28,8 @@ nav img.icon
   object-position: center
 
 
-// Home
-#about
-
-  & .remy-and-colette img
-    width: 256px
-    height: 256px
-    object-fit: cover
-    object-position: center
-    border-radius: 6px
-
-
-// Search Page
-header.substitutes-header
+// Headers
+header.substitutes-header, header.account-header, header.favors-header
 
   position: relative
   height: 256px
@@ -65,6 +54,18 @@ header.substitutes-header
     color: white
 
 
+// Home
+#about
+
+  & .remy-and-colette img
+    width: 256px
+    height: 256px
+    object-fit: cover
+    object-position: center
+    border-radius: 6px
+
+
+// Search Page
 #results
 
   margin-top: 24px
@@ -107,3 +108,25 @@ header.substitutes-header
 
     object-fit: cover
     object-position: center
+
+#add_food_alerte
+
+  z-index: 99
+  position: fixed
+  bottom: 64px
+  right: 64px
+  width: 128px
+  height: 64px
+
+  display: none
+  justify-content: center
+  align-items: center
+
+  background-color: $moules_frites
+  color: white
+  border-radius: 6px
+
+  & p
+    text-align: center
+    padding: 0
+    margin: 0

@@ -1,0 +1,38 @@
+{% extends "base.html.django" %}
+
+
+{% block header %}
+
+  {% include "foodfinder/headers/favors_header.html.django" %}
+
+{% endblock header %}
+
+
+{% block middle %}
+
+  <section class="page-section" id="substitutes">
+
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <h2>Vos aliments favoris :</h2>
+    </div>
+
+    <div id="favors" class="container">
+      <div class="row">
+        {% for favor in favors %}
+          <div class="col-12 col-md-4">
+            <div class="card substitute-card align-items-center">
+              <i class="nutriscore">{{ favor.food.nutriscore }}</i>
+              <a href="{% url 'food_page' code=favor.food.code %}">
+                <img src="{{ favor.food.img_front_url }}" alt="{{ favor.food.name }}">
+              </a>
+              <h3>{{ favor.food.name }}</h3>
+              <!--a href="#"> <i class="fa fa-trash"></i> supprimer </a-->
+            </div>
+          </div>
+          <br>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+{% endblock middle %}
