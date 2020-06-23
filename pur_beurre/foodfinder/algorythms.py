@@ -7,13 +7,15 @@ class Algorythm:
     def __init__(self):
         pass
 
-    def search_substitutes(self, food):
+    def search_substitutes(self, food, account):
         """ This method search substitutes of a food and return a array of 6.
         Return None if no substitutes are found. """
 
         substitutes = []
 
-        for substitute in Food.objects.all():
+        foods = Food.objects.all()
+
+        for substitute in foods:
 
             if self.calcMatch(food, substitute):
                 substitutes.append(substitute)
