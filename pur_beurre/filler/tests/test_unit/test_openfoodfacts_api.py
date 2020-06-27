@@ -15,8 +15,8 @@ class OpenFoodFactsTestCase(TestCase):
         'code': '1024',
         'nutriments': {'fat': 1.2},
         'categories_tags': ['Chocolat', 'Sugar'],
-        'image_front_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
-        'image_nutrition_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'image_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'image_nutrition_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'nutriscore_grade': 'a',
     }
     PRODUCT_2 = {
@@ -24,8 +24,8 @@ class OpenFoodFactsTestCase(TestCase):
         'code': '1025',
         'nutriments': {'fat': 1.2},
         'categories_tags': ['Chocolat', 'Sugar'],
-        'image_front_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
-        'image_nutrition_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'image_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'image_nutrition_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'nutriscore_grade': 'a',
     }
     PRODUCT_3 = {
@@ -33,8 +33,8 @@ class OpenFoodFactsTestCase(TestCase):
         'code': '1026',
         'nutriments': {'fat': 1.2},
         'categories_tags': ['Chocolat', 'Sugar'],
-        'image_front_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
-        'image_nutrition_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'image_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'image_nutrition_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'nutriscore_grade': 'a',
     }
     PRODUCT_4 = {
@@ -42,8 +42,8 @@ class OpenFoodFactsTestCase(TestCase):
         'code': '1027',
         'nutriments': {'fat': 1.2},
         'categories_tags': ['Chocolat', 'Sugar'],
-        'image_front_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
-        'image_nutrition_thumb_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'image_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
+        'image_nutrition_url': 'https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.200.jpg',
         'nutriscore_grade': 'a',
     }
     PRODUCT_SET = [PRODUCT, PRODUCT_2, PRODUCT_3]

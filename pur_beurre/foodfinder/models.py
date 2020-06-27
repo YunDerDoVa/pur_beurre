@@ -6,6 +6,9 @@ from django.utils.translation import gettext_lazy as _
 from datetime import date
 
 
+from .managers import FoodManager
+
+
 # Create your models here.
 class SearchFoodRequests(models.Model):
 
@@ -49,34 +52,10 @@ class Food(models.Model):
     nutriscore = models.CharField(max_length=7, choices=NutriscoreChoices.choices, default=None, null=True)
     update_date = models.DateField(auto_now=True)
     category_set = models.ManyToManyField('Category')
+    objects = FoodManager()
 
     def __str__(self):
         return self.name + ' (code:' + self.code + ')'
-
-    @staticmethod
-    def get_food_by_search_term(search_term):
-
-        food = Food.objects.filter(name=search_term).first()
-
-        if food is None:
-            food = Food.objects.filter(name__icontains=search_term).first()
-
-            if food is None:
-                splited_search_term = search_term.split(' ')
-
-                foods = None
-
-                for term in splited_search_term:
-                    if foods is None:
-                        foods = Food.objects.filter(name__icontains=term)
-                    else:
-                        intersection = foods.intersection(Food.objects.filter(name__icontains=term))
-                        if intersection.count() > 0:
-                            foods = intersection
-
-                    food = foods.first()
-
-        return food
 
 
 class FoodNutriment(models.Model):

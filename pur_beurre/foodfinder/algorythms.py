@@ -1,6 +1,8 @@
 from .models import Food
 from favor.models import Favor
 
+from datetime import datetime
+
 
 class Algorythm:
 

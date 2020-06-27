@@ -25,8 +25,8 @@ class OFFSearch:
         dict['name'] = product['product_name']
         dict['nutriment_set'] = product['nutriments']
         dict['category_set'] = product['categories_tags']
-        dict['img_front_url'] = product['image_front_thumb_url']
-        dict['img_back_url'] = product['image_nutrition_thumb_url']
+        dict['img_front_url'] = product['image_url']
+        dict['img_back_url'] = product['image_nutrition_url']
         dict['nutriscore'] = product['nutriscore_grade'].upper()
 
         return dict
@@ -121,14 +121,16 @@ class OFFDatabase:
                         food_nutriment.quantity = nutriment_quantity
                         food_nutriment.save()
 
-                    print('\t-\t-\t' + 'Nutriment added')
+                    #print('\t-\t-\t' + 'Nutriment added')
                 except:
-                    print('\t-\t-\t' + 'Nutriment not allowed')
+                    pass
+                    #print('\t-\t-\t' + 'Nutriment not allowed')
 
             # Save Food
             food.save()
 
-            print('\t-\t' + str(search))
+            if search.category_index%100 == 0:
+                print('\t-\t' + str(search))
 
 
     def drop_django(self):
@@ -217,15 +219,15 @@ class OFFDatabase:
 
                     off_search = OFFSearch(category_index, category, number_of_pages, number_of_products)
 
-                    print('\t-\t' + 'OFFSearch : ' +  str(off_search))
+                    #print('\t-\t' + 'OFFSearch : ' +  str(off_search))
 
                     if off_search.set_product(product):
                         self.searchs.append(off_search)
-                        print('\t-\t' + 'In self.searchs')
-                    else:
-                        print('\t-\t' + 'Error while setting product')
+                        #print('\t-\t' + 'In self.searchs')
+                    #else:
+                    #    print('\t-\t' + 'Error while setting product')
 
-                    print('\n')
+                    #print('\n')
 
 
     def _search(self):

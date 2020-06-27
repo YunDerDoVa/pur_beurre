@@ -18,6 +18,8 @@ class Command(BaseCommand):
         # Test Connexion
         if database.get_connexion():
 
+            print('Fetching OpenFoodFacts Database...')
+
             # Update Database
             database.update_database()
 

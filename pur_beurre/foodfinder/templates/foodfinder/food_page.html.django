@@ -16,12 +16,12 @@
 
         <div class="d-flex flex-column justify-content-center align-items-center">
           <h2>Nutriscore</h2>
-          <div class="d-flex justify-content-center">
-            {% if food.nutriscore == "A" %} <b>A</b> {% else %} A {% endif %}
-            {% if food.nutriscore == "B" %} <b>B</b> {% else %} B {% endif %}
-            {% if food.nutriscore == "C" %} <b>C</b> {% else %} C {% endif %}
-            {% if food.nutriscore == "D" %} <b>D</b> {% else %} D {% endif %}
-            {% if food.nutriscore == "E" %} <b>E</b> {% else %} E {% endif %}
+          <div class="d-flex justify-content-center nutriscore">
+            <span class="nutriscore-a {% if food.nutriscore == "A" %}active{% endif %}">A</span>
+            <span class="nutriscore-b {% if food.nutriscore == "B" %}active{% endif %}">B</span>
+            <span class="nutriscore-c {% if food.nutriscore == "C" %}active{% endif %}">C</span>
+            <span class="nutriscore-d {% if food.nutriscore == "D" %}active{% endif %}">D</span>
+            <span class="nutriscore-e {% if food.nutriscore == "E" %}active{% endif %}">E</span>
           </div>
         </div>
 

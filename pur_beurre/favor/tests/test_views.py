@@ -54,6 +54,8 @@ class ViewsTestCase(TestCase):
 
         account = Account.objects.get(username=self.USERNAME)
 
+        self.client.login(username=self.USERNAME, password=self.PASSWORD)
+
         response = self.client.get(reverse('add_favor', kwargs={'food_code': self.VALID_CODE}))
 
         json = json.load(response)

@@ -3,9 +3,14 @@ from django.test import TestCase
 
 from foodfinder.algorythms import Algorythm
 from foodfinder.models import Food, Category, Nutriment, FoodNutriment
+from mugauth.models import Account
 
 
 class AlgorythmTestCase(TestCase):
+
+    USERNAME = 'TestUser'
+    EMAIL = 'test@email.com'
+    PASSWORD = 'password'
 
     FOOD = {
         'code': '1024',
@@ -18,6 +23,8 @@ class AlgorythmTestCase(TestCase):
     }
 
     def setUp(self):
+
+        self.account = Account.objects.create_user(username=self.USERNAME, email=self.EMAIL, password=self.PASSWORD)
 
         food = Food.objects.create(
             name=self.FOOD['name'],
@@ -39,7 +46,7 @@ class AlgorythmTestCase(TestCase):
 
         food = Food.objects.filter(name=self.FOOD['name']).first()
         algorythm = Algorythm.get_algorythm_by_classname('ByFat')
-        substitutes = algorythm.search_substitutes(food)
+        substitutes = algorythm.search_substitutes(food, self.account)
 
         self.assertEqual(substitutes[0].__class__, food.__class__)
 
@@ -47,7 +54,7 @@ class AlgorythmTestCase(TestCase):
 
         food = Food.objects.filter(name=self.FOOD['name']).first()
         algorythm = Algorythm.get_algorythm_by_classname('BySalt')
-        substitutes = algorythm.search_substitutes(food)
+        substitutes = algorythm.search_substitutes(food, self.account)
 
         self.assertEqual(substitutes[0].__class__, food.__class__)
 
@@ -55,7 +62,7 @@ class AlgorythmTestCase(TestCase):
 
         food = Food.objects.filter(name=self.FOOD['name']).first()
         algorythm = Algorythm.get_algorythm_by_classname('ByNutriments')
-        substitutes = algorythm.search_substitutes(food)
+        substitutes = algorythm.search_substitutes(food, self.account)
 
         self.assertEqual(substitutes[0].__class__, food.__class__)
 
@@ -63,6 +70,6 @@ class AlgorythmTestCase(TestCase):
 
         food = Food.objects.filter(name=self.FOOD['name']).first()
         algorythm = Algorythm.get_algorythm_by_classname('ByCategory')
-        substitutes = algorythm.search_substitutes(food)
+        substitutes = algorythm.search_substitutes(food, self.account)
 
         self.assertEqual(substitutes[0].__class__, food.__class__)

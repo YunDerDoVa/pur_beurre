@@ -11,7 +11,7 @@
                   <i class="fas fa-user"></i>
                 </a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'favors' %}">
-                  <img class="icon" src="{% static "foodfinder/res/carotte.png" %}" alt="Carotte">
+                  <i class="fas fa-carrot"></i>
                 </a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout_view' %}">
                   <i class="fas fa-sign-out-alt"></i>

@@ -23,17 +23,22 @@ def search(request):
     if request.method == 'POST':
 
         form = SearchForm(request.POST)
-
         search_term = form.get_search_term()
 
-        algorythm = Algorythm.get_algorythm_by_classname('ByCategory')
+        if search_term is not None:
 
-        food = Food.get_food_by_search_term(search_term)
+            algorythm = Algorythm.get_algorythm_by_classname('ByCategory')
+            food = Food.objects.get_food_by_search_term(search_term)
 
-        if food is None:
-            return redirect('home')
+            if food is None:
+                return redirect('home')
 
-        substitutes = algorythm.search_substitutes(food, request.user)
+            substitutes = algorythm.search_substitutes(food, request.user)
+
+        else:
+
+            substitutes = []
+            food = None
 
     else:
 
