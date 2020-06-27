@@ -70,8 +70,22 @@ def food_page(request, code):
 
 def account_page(request):
 
+    form = SearchForm()
+
     context = {
+        'form': form,
         'account': request.user,
     }
 
     return render(request, 'foodfinder/account_page.html.django', context)
+
+def legacy(request):
+
+    form = SearchForm()
+
+    context = {
+        'form': form,
+        'account': request.user,
+    }
+
+    return render(request, 'foodfinder/legacy.html.django', context)

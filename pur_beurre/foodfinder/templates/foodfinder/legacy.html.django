@@ -1,0 +1,16 @@
+{% extends "base.html.django" %}
+
+
+{% block header %}
+
+  {% include "foodfinder/headers/legacy_header.html.django" %}
+
+{% endblock header %}
+
+{% block middle %}
+
+  <section id="legacy">
+    Hello
+  </section>
+
+{% endblock middle %}
