@@ -75,7 +75,7 @@ class OFFDatabase:
 
         for search in self.searchs:
 
-            food = Food.objects.filter(code=search.dict['code']).first()
+            food = Food.objects.filter(code=search.dict['code'], name=search.dict['name']).first()
 
             # Get or Create Food
             if food != None:
@@ -190,7 +190,7 @@ class OFFDatabase:
         is_test = kwargs.pop('test', False)
 
         page_size = 1000
-        categories = self._get_categories()
+        categories = self._get_categories(['fruits', 'viandes', 'boissons'])
 
         if is_test:
             page_size = 3

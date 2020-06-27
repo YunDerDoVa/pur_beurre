@@ -17,10 +17,10 @@
                 </p>
                 <div class="row remy-and-colette">
                   <div class="col-12 col-md-6">
-                    <img class="shadow" src="{% static "foodfinder/res/colette.png" %}" alt="Colette">
+                    <img class="" src="{% static "foodfinder/res/colette.png" %}" alt="Colette">
                   </div>
                   <div class="col-12 col-md-6">
-                    <img class="shadow" src="{% static "foodfinder/res/remy.jpg" %}" alt="Remy">
+                    <img class="" src="{% static "foodfinder/res/remy.png" %}" alt="Remy">
                   </div>
                 </div>
             </div>

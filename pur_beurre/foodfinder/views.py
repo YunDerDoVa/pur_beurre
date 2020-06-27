@@ -48,6 +48,7 @@ def search(request):
     context = {
         'form': form,
         'food': food,
+        'original_food': food,
         'substitutes': substitutes,
     }
 

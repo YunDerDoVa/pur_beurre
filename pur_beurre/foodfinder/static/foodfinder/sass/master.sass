@@ -114,7 +114,6 @@ header.substitutes-header, header.account-header, header.favors-header
   margin-top: 24px
   padding-top: 32px
 
-
 .card.substitute-card
 
   position: relative
@@ -124,6 +123,8 @@ header.substitutes-header, header.account-header, header.favors-header
   margin-bottom: 24px
 
   width: 192px
+
+  text-align: center
 
   & i.nutriscore
     position: absolute
@@ -152,6 +153,19 @@ header.substitutes-header, header.account-header, header.favors-header
     object-fit: cover
     object-position: center
 
+  &.small
+    width: 64px
+
+    & img
+      width: 64px
+      height: 64px
+    & i.nutriscore
+      font-size: 16px
+      width: 32px
+      height: 32px
+      padding: 4px
+      transform: translate(16px, -16px)
+
 #add_food_alerte, #del_food_alerte
 
   z-index: 99
@@ -175,6 +189,7 @@ header.substitutes-header, header.account-header, header.favors-header
     margin: 0
 
 
+// Food Details
 #food
 
   & .nutriscore
@@ -242,3 +257,10 @@ header.substitutes-header, header.account-header, header.favors-header
 
     &:hover
       color: $moules_frites !important
+
+
+// Favors
+#favors
+
+  margin-top: 24px
+  padding-top: 32px

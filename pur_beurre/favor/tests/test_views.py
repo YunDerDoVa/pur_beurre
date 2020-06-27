@@ -7,6 +7,9 @@ from favor.models import Favor
 from mugauth.models import Account
 
 
+import json
+
+
 class ViewsTestCase(TestCase):
 
     USERNAME = 'TestUser'
@@ -48,7 +51,7 @@ class ViewsTestCase(TestCase):
                 food=food, nutriment=nutriment,
                 quantity=nutriment_quantity)
 
-        favor = Favor.objects.create(account=account, food=food)
+        favor = Favor.objects.create(account=account, food=food, substitute_of=food)
 
     def test_add_favor_valid_code(self):
 
@@ -56,8 +59,8 @@ class ViewsTestCase(TestCase):
 
         self.client.login(username=self.USERNAME, password=self.PASSWORD)
 
-        response = self.client.get(reverse('add_favor', kwargs={'food_code': self.VALID_CODE}))
+        response = self.client.get(reverse('add_favor', kwargs={'food_code': self.VALID_CODE, 'original_food_code': self.VALID_CODE}))
 
-        json = json.load(response)
+        response = json.loads(response.content)
 
-        self.assertTrue(json['success'])
+        self.assertTrue(response['success'])

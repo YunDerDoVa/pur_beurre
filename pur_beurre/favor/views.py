@@ -22,14 +22,15 @@ def favors(request):
 
     return render(request, 'foodfinder/favors_page.html.django', context)
 
-def add_favor(request, food_code):
+def add_favor(request, food_code, original_food_code):
 
     json = {'success': False}
 
     food = Food.objects.get(code=food_code)
+    substitute_of = Food.objects.get(code=original_food_code)
 
     if food is not None:
-        Favor.objects.create(account=request.user, food=food)
+        Favor.objects.create(account=request.user, food=food, substitute_of=substitute_of)
         json['success'] = True
 
     return JsonResponse(json)

@@ -1,3 +1,5 @@
+from django.db.models import OuterRef, Subquery
+
 from .models import Food
 from favor.models import Favor
 
@@ -15,7 +17,7 @@ class Algorythm:
 
         substitutes = []
 
-        foods = Food.objects.all()
+        foods = self.get_queryset(food, account)
 
         for substitute in foods:
 
@@ -27,6 +29,12 @@ class Algorythm:
 
         return substitutes
 
+    def get_queryset(self, food, account):
+
+        foods = Food.objects.exclude(id=food.id)
+
+        return foods
+
     def calcMatch(self, food, substitute):
         return False
 
@@ -34,58 +42,24 @@ class Algorythm:
     def get_algorythm_by_classname(classname):
 
         algorythms = {
-            'ByFat': ByFat(),
-            'BySalt': BySalt(),
-            'ByNutriments': ByNutriments(),
             'ByCategory': ByCategory(),
-            'ByFat': ByFat(),
         }
 
         return algorythms[classname]
 
 
-class ByFat(Algorythm):
-
-    def equation_result(self, fat_food, fat_substitute):
-
-        return fat_food - fat_substitute
-
-    def calcMatch(self, food, substitute):
-
-        fat_food = food.food_nutriment_set.filter(nutriment__name='fat').first().quantity
-        fat_substitute = substitute.food_nutriment_set.filter(nutriment__name='fat').first().quantity
-
-        if fat_food is not None and fat_substitute is not None:
-
-            if self.equation_result(fat_food, fat_substitute) < 1:
-                return True
-            else:
-                return False
-
-class BySalt(Algorythm):
-
-    def equation_result(self, salt_food, salt_substitute):
-
-        return salt_food - salt_substitute
-
-    def calcMatch(self, food, substitute):
-
-        salt_food = food.food_nutriment_set.filter(nutriment__name='salt').first().quantity
-        salt_substitute = substitute.food_nutriment_set.filter(nutriment__name='salt').first().quantity
-
-        if salt_food is not None and salt_substitute is not None:
-
-            if self.equation_result(salt_food, salt_substitute) < 1:
-                return True
-            else:
-                return False
-
-class ByNutriments(Algorythm):
-
-    def calcMatch(self, food, substitute):
-        return True
-
 class ByCategory(Algorythm):
+
+    def get_queryset(self, food, account):
+
+        foods = Food.objects.exclude(id=food.id)
+
+        for category in food.category_set.all():
+            new_foods = foods.filter(category_set__name__icontains=category.name)
+            if new_foods.count() > 0:
+                foods = new_foods
+
+        return foods
 
     def calcMatch(self, food, substitute):
 

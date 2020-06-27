@@ -44,7 +44,7 @@ class ModelsTestCase(TestCase):
                 food=food, nutriment=nutriment,
                 quantity=nutriment_quantity)
 
-        favor = Favor.objects.create(account=account, food=food)
+        favor = Favor.objects.create(account=account, food=food, substitute_of=food)
 
     def test_models_relations(self):
 
@@ -53,3 +53,4 @@ class ModelsTestCase(TestCase):
         favors = Favor.objects.filter(account=account)
 
         self.assertEqual(favors.first().food.name, self.FOOD['name'])
+        self.assertEqual(favors.first().substitute_of.name, self.FOOD['name'])
