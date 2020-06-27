@@ -1,5 +1,8 @@
 {% extends "base.html.django" %}
 
+{% load static %}
+
+
 {% block header %}
 
   {% include "foodfinder/headers/food_header.html.django" %}
@@ -10,13 +13,17 @@
 
   <section class="page-section container" id="food">
 
+    <a id="save_button" href="javascript:add_favor_from_details('{% url 'add_favor' food_code=food.code %}')">
+      Ajouter aux favoris
+    </a>
+
     <div class="row align-items-center">
 
-      <div class="col-12 col-md-6 my-3">
+      <div class="col-12 col-md-6">
 
-        <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex flex-column justify-content-start align-items-center">
           <h2>Nutriscore</h2>
-          <div class="d-flex justify-content-center nutriscore">
+          <div class="nutriscore">
             <span class="nutriscore-a {% if food.nutriscore == "A" %}active{% endif %}">A</span>
             <span class="nutriscore-b {% if food.nutriscore == "B" %}active{% endif %}">B</span>
             <span class="nutriscore-c {% if food.nutriscore == "C" %}active{% endif %}">C</span>
@@ -33,39 +40,42 @@
           Repères nutritionnels pour 100g
         </h2>
 
-        <div class="d-flex flex-wrap">
-          <img src="{{ food.img_front_url }}" alt="Food Image">
-          <img src="{{ food.img_back_url }}" alt="Food Nutritiments Image">
+        <div class="food-images d-flex flex-wrap">
+          <img class="col-lg-6 col-12" src="{{ food.img_front_url }}" alt="Food Image">
+          <img class="col-lg-6 col-12" src="{{ food.img_back_url }}" alt="Food Nutritiments Image">
         </div>
 
 
       </div>
 
-      <div class="col-12 text-center my-3">
-        <a href="https://world.openfoodfacts.org/product/{{ food.code }}" target="_blank">
+      <div class="off-button col-12 text-center my-3">
+        <a class="shadow" href="https://world.openfoodfacts.org/product/{{ food.code }}" target="_blank">
           <b>Voir la fiche d'OpenFoodFacts</b>
         </a>
       </div>
 
     </div>
 
-    <div id="results" class="container">
-      <div class="row">
-        {% for food in substitutes %}
-          <div class="col-12 col-md-4">
-            <div class="card substitute-card align-items-center">
-              <i class="nutriscore">{{ food.nutriscore }}</i>
-              <a href="{% url 'food_page' id=food.id %}">
-                <img src="{{ food.img_front_url }}" alt="{{ food.name }}">
-              </a>
-              <h3>{{ food.name }}</h3>
-              <a href="#"> <i class="far fa-save"></i> sauvegarder </a>
-            </div>
-          </div>
-          <br>
-        {% endfor %}
-      </div>
-    </div>
   </section>
 
 {% endblock middle %}
+
+{% block footer %}
+
+<div id="add_food_alerte">
+  <p>Ajouté aux favoris !</p>
+</div>
+
+<div id="del_food_alerte">
+  <p>Supprimé des favoris !</p>
+</div>
+
+{% endblock footer %}
+
+{% block javascripts %}
+
+  {{ block.super }}
+
+  <script src="{% static 'foodfinder/js/ajax.js' %}" type="text/javascript"></script>
+
+{% endblock javascripts %}

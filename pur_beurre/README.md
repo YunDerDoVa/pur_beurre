@@ -7,4 +7,4 @@
 [ ] Une seule requête
 [x] Carotte font-awesome
 [x] Remy et Colette dans la charte graphique
-[ ] Nutriscore en CSS
+[x] Nutriscore en CSS
