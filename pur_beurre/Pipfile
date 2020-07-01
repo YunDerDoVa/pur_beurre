@@ -10,7 +10,6 @@ django = "*"
 requests = "*"
 json = "*"
 pillow = "*"
-selenium = "*"
 
 [requires]
 python_version = "3.6"

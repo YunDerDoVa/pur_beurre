@@ -23,8 +23,8 @@
 
 ## Tests :
 
-- [ ] Selenium
-- [ ] Gecko Driver
+- [x] Selenium
+- [x] Gecko Driver
 - [ ] Coverage > 80%
 
 `
@@ -34,8 +34,8 @@ firefox_options.headless = True
 
 ## App :
 
-- [ ] Redirect Login (login_required)
-- [ ] LoginView.as_view(templale_name='name', authentication_form='form')
+- [x] Redirect Login (login_required)
+- [x] LoginView.as_view(templale_name='name', authentication_form='form')
 
 ## Documents :
 
