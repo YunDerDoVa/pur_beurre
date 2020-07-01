@@ -9,8 +9,40 @@
 
 {% block middle %}
 
-  <section id="legacy">
-    Hello
+  <section id="legacy" class="container">
+
+    <div class="text-black-50 my-5">
+
+      <p>
+        Icones provenant du site <a href="https://fontawesome.com/">fontawesome.com</a>.
+      </p>
+
+      <p>
+        Photos provenant du site <a href="https://unsplash.com/">unsplash.com</a>.
+      </p>
+
+      <p>
+        Images provenant de <a href="https://www.pixar.com/">Pixar Animation Studios</a>.
+      </p>
+
+      <p>
+        Données des aliments provenant de la base d'OpenFoodFacts (<a href="https://world.openfoodfacts.org/">voir détails</a>).
+      </p>
+
+      <p>
+        Powered By <a href="https://getbootstrap.com/">Bootstrap</a>,
+        <a href="https://www.postgresql.org/">PostgreSQL</a>,
+        <a href="https://www.djangoproject.com/">Django</a> and
+        <a href="https://www.heroku.com/">Heroku</a>.
+      </p>
+
+      <p>
+        Template provenant de <a href="https://startbootstrap.com/">startbootstrap.com</a>.
+      </p>
+
+    </div>
+
+
   </section>
 
 {% endblock middle %}
