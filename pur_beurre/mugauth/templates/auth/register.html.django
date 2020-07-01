@@ -1,14 +1,23 @@
-{% extends "auth/base.html.django" %}
+{% extends "base.html.django" %}
+
+{% block header %}
+  {% include "foodfinder/headers/register_header.html.django" %}
+{% endblock header %}
 
 
 {% block main %}
 
-  <form class="auth-form" action="." method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" name="submit">Submit</button>
-  </form>
+  <div class="d-flex align-items-center my-4 h-50 flex-column">
 
-  <a href="{% url 'login_view' %}">Login</a>
+    <form class="auth-form" action="." method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" name="submit">Submit</button>
+    </form>
+
+    <a href="{% url 'login_view' %}">Login</a>
+
+  </div>
+
 
 {% endblock main %}

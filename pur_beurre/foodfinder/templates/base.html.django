@@ -30,7 +30,7 @@
     {% include "foodfinder/navigation.html.django" %}
 
     {% block header %}{% endblock header %}
-    {% block middle %}{% endblock middle %}
+    {% block middle %}{% block main %}{% endblock main %}{% endblock middle %}
     {% block footer %}{% endblock footer %}
 
     {% include "foodfinder/footer.html.django" %}

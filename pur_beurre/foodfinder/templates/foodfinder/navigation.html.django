@@ -13,9 +13,15 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'favors' %}">
                   <i class="fas fa-carrot"></i>
                 </a></li>
+                {% if request.user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout_view' %}">
                   <i class="fas fa-sign-out-alt"></i>
                 </a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login_view' %}">
+                  <i class="fas fa-sign-in-alt"></i>
+                </a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

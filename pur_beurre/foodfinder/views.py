@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
 
 
 from .forms import SearchForm
@@ -18,6 +19,8 @@ def home(request):
 
     return render(request, 'foodfinder/home.html.django', context)
 
+
+@login_required(login_url='/auth/login/')
 def search(request):
 
     if request.method == 'POST':
@@ -55,6 +58,8 @@ def search(request):
     # results : 2x3
     return render(request, 'foodfinder/results_page.html.django', context)
 
+
+@login_required(login_url='/auth/login/')
 def food_page(request, code):
 
     form = SearchForm()
@@ -68,6 +73,8 @@ def food_page(request, code):
 
     return render(request, 'foodfinder/food_page.html.django', context)
 
+
+@login_required(login_url='/auth/login/')
 def account_page(request):
 
     form = SearchForm()
@@ -78,6 +85,7 @@ def account_page(request):
     }
 
     return render(request, 'foodfinder/account_page.html.django', context)
+
 
 def legacy(request):
 

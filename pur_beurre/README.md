@@ -44,11 +44,14 @@ firefox_options.headless = True
 ## PEP8 :
 
 - [ ] autopep8
+- [ ] commenter
 - [ ] README.md
 
 ## Deployment :
 
 - [ ] PostgreSQL
 
-5 min test
-10 min présentation
+## Soutenance :
+
+- [ ] 5 min test
+- [ ] 10 min présentation
