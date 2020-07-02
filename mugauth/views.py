@@ -22,13 +22,15 @@ def register_view(request):
 
             cd = form.cleaned_data
 
-            try:
-                user = Account.objects.create_user(cd['name'], cd['email'], cd['password'])
-                login(request, user)
+            if cd['password'] == cd['password_2']:
 
-                return redirect('home')
-            except:
-                print('error')
+                try:
+                    user = Account.objects.create_user(cd['name'], cd['email'], cd['password'])
+                    login(request, user)
+
+                    return redirect('home')
+                except:
+                    print('error')
 
     context = {
         'form': form,

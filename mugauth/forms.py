@@ -10,6 +10,11 @@ class RegisterForm(forms.Form):
         label='Mot de passe',
         max_length=127
     )
+    password_2 = forms.CharField(
+        widget=forms.PasswordInput(),
+        label='Confirmer mot de passe',
+        max_length=127
+    )
 
 
 class LoginForm(forms.Form):

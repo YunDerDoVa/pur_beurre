@@ -89,8 +89,6 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
-AUTH_USER_MODEL = 'mugauth.Account'
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -131,3 +129,5 @@ LOGIN_REDIRECT_URL = '/'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+AUTH_USER_MODEL = 'mugauth.Account'
