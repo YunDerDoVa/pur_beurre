@@ -23,7 +23,20 @@ class OFFSearch:
 
         dict['code'] = product['code']
         dict['name'] = product['product_name']
-        dict['nutriment_set'] = product['nutriments']
+        dict['nutriment_set'] = {
+            'sugar': product['nutriments']['sugars_100g'],
+            'salt': product['nutriments']['salt_100g'],
+            'vitamin-a': product['nutriments']['vitamin-a_100g'],
+            'vitamin-c': product['nutriments']['vitamin-c_100g'],
+            'energy': product['nutriments']['energy_100g'],
+            'fat': product['nutriments']['fat_100g'],
+            'iron': product['nutriments']['iron_100g'],
+            'calcium': product['nutriments']['calcium_100g'],
+            'sodium': product['nutriments']['sodium_100g'],
+            'proteins': product['nutriments']['proteins_100g'],
+            'cholesterol': product['nutriments']['cholesterol_100g'],
+            'carbohydrates': product['nutriments']['carbohydrates_100g'],
+        }
         dict['category_set'] = product['categories_tags']
         dict['img_front_url'] = product['image_url']
         dict['img_back_url'] = product['image_nutrition_url']
@@ -75,7 +88,7 @@ class OFFDatabase:
 
         for search in self.searchs:
 
-            food = Food.objects.filter(code=search.dict['code'], name=search.dict['name']).first()
+            food = Food.objects.filter(code=search.dict['code']).first()
 
             # Get or Create Food
             if food != None:

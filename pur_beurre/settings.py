@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'pur_beurre.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'de1r8l16fubnc',
         'USER': 'fxgdcddtchjehc',
         'PASSWORD': os.environ['PSQL_PASSWORD'],
         'HOST': 'ec2-54-234-28-165.compute-1.amazonaws.com',
