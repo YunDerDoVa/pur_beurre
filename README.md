@@ -57,15 +57,15 @@ ainsi que le fonctionnement de l'algorythme de recherche.
 #### Arborescence
 
 - test_algorythm
-- - test_search_substitutes_by_category
+  - test_search_substitutes_by_category
 - test_forms
-- - test_search_form
+  - test_search_form
 - test_models
-- - test_models_relations
-- - test_food
+  - test_models_relations
+  - test_food
 - test_selenium
-- - test_login
+  - test_login
 - test_views
-- - test_home_template_used
-- - test_search_perform_search_valid
-- - test_search_perform_search_non_valid
+  - test_home_template_used
+  - test_search_perform_search_valid
+  - test_search_perform_search_non_valid
