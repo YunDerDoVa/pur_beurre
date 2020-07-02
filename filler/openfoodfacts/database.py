@@ -24,18 +24,18 @@ class OFFSearch:
         dict['code'] = product['code']
         dict['name'] = product['product_name']
         dict['nutriment_set'] = {
-            'sugar': product['nutriments']['sugars_100g'],
-            'salt': product['nutriments']['salt_100g'],
-            'vitamin-a': product['nutriments']['vitamin-a_100g'],
-            'vitamin-c': product['nutriments']['vitamin-c_100g'],
-            'energy': product['nutriments']['energy_100g'],
-            'fat': product['nutriments']['fat_100g'],
-            'iron': product['nutriments']['iron_100g'],
-            'calcium': product['nutriments']['calcium_100g'],
-            'sodium': product['nutriments']['sodium_100g'],
-            'proteins': product['nutriments']['proteins_100g'],
-            'cholesterol': product['nutriments']['cholesterol_100g'],
-            'carbohydrates': product['nutriments']['carbohydrates_100g'],
+            'sugar': product['nutriments'].pop('sugars_100g', None),
+            'salt': product['nutriments'].pop('salt_100g', None),
+            'vitamin-a': product['nutriments'].pop('vitamin-a_100g', None),
+            'vitamin-c': product['nutriments'].pop('vitamin-c_100g', None),
+            'energy': product['nutriments'].pop('energy_100g', None),
+            'fat': product['nutriments'].pop('fat_100g', None),
+            'iron': product['nutriments'].pop('iron_100g', None),
+            'calcium': product['nutriments'].pop('calcium_100g', None),
+            'sodium': product['nutriments'].pop('sodium_100g', None),
+            'proteins': product['nutriments'].pop('proteins_100g', None),
+            'cholesterol': product['nutriments'].pop('cholesterol_100g', None),
+            'carbohydrates': product['nutriments'].pop('carbohydrates_100g', None),
         }
         dict['category_set'] = product['categories_tags']
         dict['img_front_url'] = product['image_url']
@@ -119,25 +119,26 @@ class OFFDatabase:
             # Get or Create Nutriment and Attach to Food
             for nutriment_name, nutriment_quantity in search.dict['nutriment_set'].items():
 
-                try:
-                    nutriment = Nutriment.objects.filter(name=nutriment_name).first()
-                    if nutriment == None:
-                        nutriment = Nutriment.objects.create(name=nutriment_name)
+                if nutriment_quantity is not None:
+                    try:
+                        nutriment = Nutriment.objects.filter(name=nutriment_name).first()
+                        if nutriment == None:
+                            nutriment = Nutriment.objects.create(name=nutriment_name)
 
-                    # Attach Nutriment to Food
-                    food_nutriment = FoodNutriment.objects.filter(nutriment=nutriment, food=food).first()
-                    if food_nutriment == None:
-                        food_nutriment = FoodNutriment.objects.create(
-                            nutriment=nutriment, food=food,
-                            quantity=nutriment_quantity)
-                    else:
-                        food_nutriment.quantity = nutriment_quantity
-                        food_nutriment.save()
+                        # Attach Nutriment to Food
+                        food_nutriment = FoodNutriment.objects.filter(nutriment=nutriment, food=food).first()
+                        if food_nutriment == None:
+                            food_nutriment = FoodNutriment.objects.create(
+                                nutriment=nutriment, food=food,
+                                quantity=nutriment_quantity)
+                        else:
+                            food_nutriment.quantity = nutriment_quantity
+                            food_nutriment.save()
 
-                    #print('\t-\t-\t' + 'Nutriment added')
-                except:
-                    pass
-                    #print('\t-\t-\t' + 'Nutriment not allowed')
+                        #print('\t-\t-\t' + 'Nutriment added')
+                    except:
+                        pass
+                        #print('\t-\t-\t' + 'Nutriment not allowed')
 
             # Save Food
             food.save()
@@ -241,6 +242,8 @@ class OFFDatabase:
                     #    print('\t-\t' + 'Error while setting product')
 
                     #print('\n')
+
+                print('\t\t' + str(len(self.searchs)) + ' items')
 
 
     def _search(self):
