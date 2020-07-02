@@ -12,26 +12,60 @@ https://trello.com/invite/b/5qldxhTs/0cefac054afa47c7893eb89ff4129792/projet-8
 
 https://github.com/GoswaTech/pur_beurre
 
-## OpenFoodFacts Fields
+---
 
-- nutrition_grade_fr
+## Plan de Test
 
-## 19 Mai
+### App Mugauth
 
-- Auth App
-- Abstract (ou Base) User
-- Django AllAuth
+#### But
 
-## Questions
+Les tests de l'app <mugauth> servent à tester la bonne implémentation du modèle
+AbstractUser.
 
-- Command.add_argument()
-  - Voir épingles Discord
-  - argparse
-- Django Mock
-  - patch()
+#### Arborescence
 
-## 04 Juin
+- test_models
+- - test_auth_user_model
+- - test_authenticate
+- - test_fields
 
-- RegisterForm.EmailField
-- Test Auth : test_fields
-- Food Model
+### App Filler
+
+#### But
+
+Les tests de l'app <filler> consolident l'implémentation d'OpenFoodFacts dans
+le site. Ils testent d'un côté la communication avec la base de données Django
+et d'un autre la communication avec les serveurs d'OpenFoodFacts.
+
+#### Arborescence
+
+- test_functionnal
+- - test_update_database
+- - test_update_django
+- test_integration
+- - test_connexion
+- - test_update_database
+
+### App FoodFinder
+
+#### But
+
+Les tests de l'app <foodfinder> testent le fonctionnement global du frontend
+ainsi que le fonctionnement de l'algorythme de recherche.
+
+#### Arborescence
+
+- test_algorythm
+- - test_search_substitutes_by_category
+- test_forms
+- - test_search_form
+- test_models
+- - test_models_relations
+- - test_food
+- test_selenium
+- - test_login
+- test_views
+- - test_home_template_used
+- - test_search_perform_search_valid
+- - test_search_perform_search_non_valid

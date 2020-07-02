@@ -24,4 +24,5 @@ class AccountTestCase(TestCase):
         self.assertEqual(account.username, self.USERNAME)
 
     def test_fields(self):
-        pass
+        account = Account.objects.get(username=self.USERNAME)
+        self.assertEqual(account.email, self.EMAIL)
