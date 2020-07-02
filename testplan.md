@@ -2,9 +2,9 @@
 
 *Ce plan de test est sous forme de markdown afin d'être simplement modifiable.*
 
-## In Scope
+## Introduction
 
-**Introduction :**
+**Périmètre :**
 
 Nous allons majoritairement réaliser des tests fonctionnels ainsi que des tests
 d'intégration.
@@ -31,7 +31,7 @@ cette dite classe pour enfin compléter le test et y insérer les assertions et
 éventuellement ajouter d'autres tests complémentaires testant des points
 sensibles de la classe.
 
----
+## In Scope
 
 ### App Mugauth
 
