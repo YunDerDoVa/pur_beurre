@@ -1,7 +1,5 @@
 from django.test import TestCase
 
-from unittest.mock import MagicMock, create_autospec
-
 
 from filler.openfoodfacts.database import OFFDatabase, OFFSearch
 from foodfinder.models import Food

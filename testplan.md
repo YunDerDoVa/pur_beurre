@@ -4,6 +4,35 @@
 
 ## In Scope
 
+**Introduction :**
+
+Nous allons majoritairement réaliser des tests fonctionnels ainsi que des tests
+d'intégration.
+
+**Outils :**
+
+- django.test (extends unittest)
+- selenium
+- unittest.mock > MagicMock
+- coverage
+
+**Organisation :**
+
+L'organisation des tests se fait par rapport à l'app en elle-même, c'est à dire
+que chaque app possède sa propre arborescence et points importants. Autrement
+dit, il n'y a pas d'organisation standard. L'organisation de chaque app est
+détaillée plus bas.
+
+**Temporalité :**
+
+Les tests sont écrits en même temps que les méthodes testées. Nous commençons
+par coder le squelette de la classe dans le dossier de test puis nous codons
+cette dite classe pour enfin compléter le test et y insérer les assertions et
+éventuellement ajouter d'autres tests complémentaires testant des points
+sensibles de la classe.
+
+---
+
 ### App Mugauth
 
 #### But
@@ -82,4 +111,6 @@ Aussi, ils tests le fonctionnement du lien d'ajout aux favoris.
 ## Out Scope
 
 - Django Admin
-- Old Food Manager Methods
+- Test de Performances
+- Test de Charge
+- Test de Sécurité

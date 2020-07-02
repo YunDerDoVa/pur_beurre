@@ -1,7 +1,5 @@
 from django.test import TestCase
 
-from unittest.mock import MagicMock, patch
-
 
 from filler.openfoodfacts.database import OFFDatabase
 
