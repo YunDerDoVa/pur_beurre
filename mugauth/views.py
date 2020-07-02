@@ -55,7 +55,7 @@ def login_view(request):
             cd = form.cleaned_data
 
             try:
-                user = Account.objects.get(email=cd['email'])
+                user = Account.objects.filter(email=cd['email']).first()
                 user = authenticate(username=user.username, password=cd['password'])
             except:
                 user = authenticate(username=cd['email'], password=cd['password'])
