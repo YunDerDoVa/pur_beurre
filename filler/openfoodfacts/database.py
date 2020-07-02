@@ -91,13 +91,7 @@ class OFFDatabase:
             food = Food.objects.filter(code=search.dict['code']).first()
 
             # Get or Create Food
-            if food != None:
-                food.name = search.dict['name']
-                food.img_front_url = search.dict['img_front_url']
-                food.img_back_url = search.dict['img_back_url']
-                food.nutriscore = search.dict['nutriscore']
-                food.save()
-            else:
+            if food is None:
                 food = Food.objects.create(
                     code=search.dict['code'],
                     name=search.dict['name'],
@@ -105,6 +99,12 @@ class OFFDatabase:
                     img_back_url=search.dict['img_back_url'],
                     nutriscore=search.dict['nutriscore'],
                 )
+            else:
+                food.name = search.dict['name']
+                food.img_front_url = search.dict['img_front_url']
+                food.img_back_url = search.dict['img_back_url']
+                food.nutriscore = search.dict['nutriscore']
+                food.save()
 
             # Get or Create Category
             for category_name in search.dict['category_set']:
@@ -204,7 +204,15 @@ class OFFDatabase:
         is_test = kwargs.pop('test', False)
 
         page_size = 1000
-        categories = self._get_categories(['fruits', 'viandes', 'boissons'])
+
+        preset = 2
+
+        if preset == 1:
+            categories = self._get_categories(['fruits', 'viandes', 'boissons'])
+        elif preset == 2:
+            categories = self._get_categories(['gras', 'sucre', 'sel'])
+        else:
+            categories = self._get_categories()
 
         if is_test:
             page_size = 3

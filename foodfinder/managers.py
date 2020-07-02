@@ -5,7 +5,7 @@ class FoodManager(models.Manager):
 
     def get_food_by_search_term(self, search_term):
 
-        food = self.filter(name=search_term).first()
+        food = self.filter(name__iexact=search_term).first()
 
         if food is None:
             food = self.filter(name__icontains=search_term).first()
