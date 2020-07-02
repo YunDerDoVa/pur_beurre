@@ -33,6 +33,12 @@ sensibles de la classe.
 
 ## In Scope
 
+*C'est ici que sont détaillées les organisations des tests de chaque app.
+Vous y trouverai le but du dossier de tests ainsi que l'arborescence de chaque
+dossier.*
+
+---
+
 ### App Mugauth
 
 #### But
