@@ -26,9 +26,9 @@ AbstractUser.
 #### Arborescence
 
 - test_models
-- - test_auth_user_model
-- - test_authenticate
-- - test_fields
+  - test_auth_user_model
+  - test_authenticate
+  - test_fields
 
 ### App Filler
 
@@ -41,11 +41,11 @@ et d'un autre la communication avec les serveurs d'OpenFoodFacts.
 #### Arborescence
 
 - test_functionnal
-- - test_update_database
-- - test_update_django
+  - test_update_database
+  - test_update_django
 - test_integration
-- - test_connexion
-- - test_update_database
+  - test_connexion
+  - test_update_database
 
 ### App FoodFinder
 
