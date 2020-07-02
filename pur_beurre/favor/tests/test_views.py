@@ -27,6 +27,7 @@ class ViewsTestCase(TestCase):
     }
 
     VALID_CODE = FOOD['code']
+    NON_VALID_CODE = FOOD['name']
     INVALID_CODE = '0'
 
     def setUp(self):
@@ -64,3 +65,15 @@ class ViewsTestCase(TestCase):
         response = json.loads(response.content)
 
         self.assertTrue(response['success'])
+
+    def test_add_favor_non_valid_code(self):
+
+        account = Account.objects.get(username=self.USERNAME)
+
+        self.client.login(username=self.USERNAME, password=self.PASSWORD)
+
+        response = self.client.get(reverse('add_favor', kwargs={'food_code': self.NON_VALID_CODE, 'original_food_code': self.NON_VALID_CODE}))
+
+        response = json.loads(response.content)
+
+        self.assertFalse(response['success'])

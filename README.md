@@ -18,10 +18,10 @@ https://github.com/GoswaTech/pur_beurre
 
 ### App Mugauth
 
-#### But
-
-Les tests de l'app <mugauth> servent à tester la bonne implémentation du modèle
-AbstractUser.
+> **But**
+>
+> Les tests de l'app <mugauth> servent à tester la bonne implémentation du modèle
+> AbstractUser.
 
 #### Arborescence
 
@@ -29,6 +29,8 @@ AbstractUser.
   - test_auth_user_model
   - test_authenticate
   - test_fields
+
+  ---
 
 ### App Filler
 
@@ -46,6 +48,8 @@ et d'un autre la communication avec les serveurs d'OpenFoodFacts.
 - test_integration
   - test_connexion
   - test_update_database
+
+  ---
 
 ### App FoodFinder
 
@@ -69,3 +73,20 @@ ainsi que le fonctionnement de l'algorythme de recherche.
   - test_home_template_used
   - test_search_perform_search_valid
   - test_search_perform_search_non_valid
+
+---
+
+### App Favor
+
+#### But
+
+Les tests de l'app <favor> testent le lien entre les favoris et la nourriture.
+Aussi, ils tests le fonctionnement du lien d'ajout aux favoris.
+
+#### Arborescence
+
+- test_models
+  - test_models_relations
+- test_views
+  - test_add_favor_non_valid_code
+  - test_add_favor_valid_code
