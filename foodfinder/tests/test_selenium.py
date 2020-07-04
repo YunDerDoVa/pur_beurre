@@ -7,14 +7,13 @@ from mugauth.models import Account
 
 class MySeleniumTests(StaticLiveServerTestCase):
 
-    fixtures = ['user-data.json']
-
     USERNAME = 'Test'
     EMAIL = 'test@email.com'
     PASSWORD = 'password'
 
     def setUp(self):
-        account = Account.create(username=self.USERNAME, email=self.EMAIL, password=self.PASSWORD)
+
+        account = Account.objects.create_user(username=self.USERNAME, email=self.EMAIL, password=self.PASSWORD)
 
     @classmethod
     def setUpClass(cls):
@@ -28,9 +27,9 @@ class MySeleniumTests(StaticLiveServerTestCase):
         super().tearDownClass()
 
     def test_login(self):
-        self.selenium.get('{0}{1}'.format(self.live_server_url, '/login/'))
+        self.selenium.get('{0}{1}'.format(self.live_server_url, '/auth/login/'))
         username_input = self.selenium.find_element_by_name("username")
-        username_input.send_keys('myuser')
+        username_input.send_keys('Test')
         password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('secret')
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        password_input.send_keys('password')
+        #self.selenium.find_element_by_xpath('//input[@value="submit"]').click()

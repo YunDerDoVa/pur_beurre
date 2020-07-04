@@ -51,6 +51,7 @@ class ViewsTestCase(TestCase):
 
     def test_home_template_used(self):
 
+        self.client.login(username=self.USERNAME, password=self.PASSWORD)
         response = self.client.get(reverse('home'))
 
         self.assertTemplateUsed(response, 'foodfinder/home.html.django')

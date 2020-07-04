@@ -12,6 +12,8 @@ pillow = "*"
 gunicorn = "*"
 django-heroku = "*"
 whitenoise = "*"
+selenium = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.6"
