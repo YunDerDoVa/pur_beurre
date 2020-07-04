@@ -27,8 +27,7 @@ SECRET_KEY = '7cd3=r0jeojff87e2bv+ezvasa38n(01#zuv#4vs85hk5phkr#'
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
+    '*',
     'pur-beurre-arthur.herokuapp.com/',
 ]
 
@@ -56,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'pur_beurre.urls'
@@ -88,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'de1r8l16fubnc',
         'USER': 'fxgdcddtchjehc',
-        'PASSWORD': os.environ['PSQL_PASSWORD'],
+        'PASSWORD': os.environ.get('PSQL_PASSWORD'),
         'HOST': 'ec2-54-234-28-165.compute-1.amazonaws.com',
         'PORT': '5432',
     }
@@ -134,9 +132,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    #os.path.join(BASE_DIR, 'static'),
 )
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGOUT_REDIRECT_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
