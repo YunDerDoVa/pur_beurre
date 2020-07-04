@@ -56,6 +56,34 @@ class ViewsTestCase(TestCase):
 
         self.assertTemplateUsed(response, 'foodfinder/home.html.django')
 
+    def test_search_template_used(self):
+
+        self.client.login(username=self.USERNAME, password=self.PASSWORD)
+        response = self.client.post(reverse('search'), {'search_term': 'chocolat'})
+
+        self.assertTemplateUsed(response, 'foodfinder/results_page.html.django')
+
+    def test_food_page_template_used(self):
+
+        self.client.login(username=self.USERNAME, password=self.PASSWORD)
+        response = self.client.get(reverse('food_page', kwargs={'code': self.FOOD['code']}))
+
+        self.assertTemplateUsed(response, 'foodfinder/food_page.html.django')
+
+    def test_account_template_used(self):
+
+        self.client.login(username=self.USERNAME, password=self.PASSWORD)
+        response = self.client.get(reverse('account_page'))
+
+        self.assertTemplateUsed(response, 'foodfinder/account_page.html.django')
+
+    def test_legacy_template_used(self):
+
+        self.client.login(username=self.USERNAME, password=self.PASSWORD)
+        response = self.client.get(reverse('legacy'))
+
+        self.assertTemplateUsed(response, 'foodfinder/legacy.html.django')
+
     def test_search_perform_search_valid(self):
 
         url = reverse('search')

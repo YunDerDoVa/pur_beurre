@@ -150,6 +150,7 @@ LOGOUT_REDIRECT_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+if not DEBUG:
+    django_heroku.settings(locals())
 
 AUTH_USER_MODEL = 'mugauth.Account'

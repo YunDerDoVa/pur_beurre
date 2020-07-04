@@ -28,8 +28,8 @@ class MySeleniumTests(StaticLiveServerTestCase):
 
     def test_login(self):
         self.selenium.get('{0}{1}'.format(self.live_server_url, '/auth/login/'))
-        username_input = self.selenium.find_element_by_name("username")
-        username_input.send_keys('Test')
+        username_input = self.selenium.find_element_by_name("email")
+        username_input.send_keys(self.EMAIL)
         password_input = self.selenium.find_element_by_name("password")
-        password_input.send_keys('password')
+        password_input.send_keys(self.PASSWORD)
         #self.selenium.find_element_by_xpath('//input[@value="submit"]').click()
