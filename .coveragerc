@@ -1,0 +1,6 @@
+[run]
+omit =
+    manage.py
+    */tests/*
+    */migrations/*
+    pur_beurre/*
