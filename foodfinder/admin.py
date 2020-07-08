@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import SearchFoodRequests, Food, Category, Nutriment, FoodNutriment
+from .models import FoodHistory, Food, Category, Nutriment, FoodNutriment
 
 
 # Register your models here.
-admin.site.register(SearchFoodRequests)
+admin.site.register(FoodHistory)
 
 admin.site.register(Food)
 

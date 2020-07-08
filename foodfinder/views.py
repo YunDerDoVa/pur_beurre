@@ -4,8 +4,10 @@ from django.contrib.auth.decorators import login_required
 
 
 from .forms import SearchForm
-from .models import Food
+from .models import Food, FoodHistory
 from .algorythms import Algorythm
+
+from mugauth.forms import EditAccountForm
 
 
 # Create your views here.
@@ -35,6 +37,9 @@ def search(request):
 
             if food is None:
                 return redirect('home')
+            else:
+                if request.user.allow_datashare:
+                    FoodHistory.objects.create(user=request.user, food=food)
 
             substitutes = algorythm.search_substitutes(food, request.user)
 
@@ -46,7 +51,6 @@ def search(request):
     else:
 
         form = SearchForm()
-
 
     context = {
         'form': form,
@@ -79,8 +83,21 @@ def account_page(request):
 
     form = SearchForm()
 
+    account_form = EditAccountForm(instance=request.user)
+
+    if request.method == 'POST':
+
+        account_form = EditAccountForm(request.POST)
+
+        if account_form.is_valid():
+
+            cd = account_form.cleaned_data
+            request.user.allow_datashare = cd['allow_datashare']
+            request.user.save()
+
     context = {
         'form': form,
+        'account_form': account_form,
         'account': request.user,
     }
 

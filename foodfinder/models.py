@@ -10,11 +10,14 @@ from .managers import FoodManager
 
 
 # Create your models here.
-class SearchFoodRequests(models.Model):
+class FoodHistory(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
-    search = models.CharField(max_length=255)
+    food = models.ForeignKey('Food', on_delete=models.CASCADE)
     #food = models.ForeignKey(Food, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.user.username + ' >>> ' + self.food.name
 
 class SearchAlgorythm(models.Model):
 

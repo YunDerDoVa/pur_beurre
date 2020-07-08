@@ -14,6 +14,8 @@
 
   <section class="page-section" id="substitutes">
 
+    {% include "foodfinder/components/history.html.django" %}
+
     <div class="d-flex flex-column justify-content-center align-items-center">
       <h2>Vos aliments favoris :</h2>
     </div>

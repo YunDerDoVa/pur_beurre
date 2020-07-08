@@ -15,9 +15,12 @@ def favors(request):
 
     favors = Favor.objects.filter(account=request.user).order_by('date').all()
 
+    history = request.user.foodhistory_set.all()
+
     context = {
         'form': form,
         'favors': favors,
+        'history': history,
     }
 
     return render(request, 'foodfinder/favors_page.html.django', context)

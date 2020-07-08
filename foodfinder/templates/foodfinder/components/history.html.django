@@ -1,0 +1,17 @@
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <h2>Vos anciennes recherches :</h2>
+</div>
+
+<div id="history" class="container">
+  <div class="food-list">
+    {% for search in history %}
+      <div class="card small substitute-card align-items-center">
+        <i class="nutriscore">{{ search.food.nutriscore }}</i>
+        <a href="{% url 'food_page' code=search.food.code %}">
+          <img src="{{ search.food.img_front_url }}" alt="{{ search.food.name }}">
+        </a>
+        <h6>{{ search.food.name }}</h6>
+      </div>
+    {% endfor %}
+  </div>
+</div>
