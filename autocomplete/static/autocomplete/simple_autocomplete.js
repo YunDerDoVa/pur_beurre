@@ -1,10 +1,15 @@
-function simple_autocomplete(field_id, datalist, name) {
+function simple_autocomplete(field, datalist, name) {
 
   //console.log(field_id);
   //console.log(datalist);
   //console.log(name);
 
-  var field = document.getElementById(field_id);
+  var form = field.parentNode;
+  var urlname = field.dataset['urlname'];
+
+  //console.log(urlname);
+  //console.log(form);
+  //console.log(form.dataset[urlname]);
 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -21,7 +26,7 @@ function simple_autocomplete(field_id, datalist, name) {
       }
     }
   };
-  xhttp.open("GET", field.parentNode.dataset[field.dataset['urlname']] + '?name=' + name, true);
+  xhttp.open("GET", form.dataset[urlname] + '?name=' + name, true);
   xhttp.send();
 
 }
@@ -33,7 +38,7 @@ function init_simple_autocomplete() {
     var field = fields[i];
     field.addEventListener("keypress", function(){
       var name = field.value;
-      simple_autocomplete(field.id, field.list, name);
+      simple_autocomplete(field, field.list, name);
     });
   }
 
