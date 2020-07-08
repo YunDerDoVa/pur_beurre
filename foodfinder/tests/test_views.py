@@ -4,7 +4,7 @@ from django.urls import reverse
 
 
 from foodfinder.views import home
-from foodfinder.models import Food, Category, Nutriment, FoodNutriment
+from foodfinder.models import Food, Category, Nutriment, FoodNutriment, FoodHistory
 from mugauth.models import Account
 
 
@@ -29,7 +29,7 @@ class ViewsTestCase(TestCase):
 
     def setUp(self):
 
-        account = Account.objects.create_user(username=self.USERNAME, email=self.EMAIL, password=self.PASSWORD)
+        self.account = Account.objects.create_user(username=self.USERNAME, email=self.EMAIL, password=self.PASSWORD)
 
         food = Food.objects.create(
             name=self.FOOD['name'],
@@ -105,6 +105,23 @@ class ViewsTestCase(TestCase):
         response = self.client.post(url, data)
 
         self.assertEqual(response.status_code, 200)
+
+    def test_search_in_history(self):
+
+        self.account.allow_datashare = True
+        self.account.save()
+
+        url = reverse('search')
+        data = self.VALID_DATA
+
+        self.client.login(username=self.USERNAME, password=self.PASSWORD)
+
+        response = self.client.post(url, data)
+
+        history = FoodHistory.objects.filter(user=self.account).first()
+
+        self.assertEqual(history.food.name, self.VALID_DATA['search_term'])
+
 
 
 # assert code=200
