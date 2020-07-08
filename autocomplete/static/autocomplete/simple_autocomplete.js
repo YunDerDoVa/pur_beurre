@@ -1,10 +1,11 @@
-function simple_autocomplete(field, datalist, name) {
+function simple_autocomplete(field, name) {
 
   //console.log(field_id);
   //console.log(datalist);
   //console.log(name);
 
   var form = field.parentNode;
+  var datalist = field.list;
   var urlname = field.dataset['urlname'];
 
   //console.log(urlname);
@@ -38,7 +39,7 @@ function init_simple_autocomplete() {
     var field = fields[i];
     field.addEventListener("keypress", function(){
       var name = field.value;
-      simple_autocomplete(field, field.list, name);
+      simple_autocomplete(field, name);
     });
   }
 

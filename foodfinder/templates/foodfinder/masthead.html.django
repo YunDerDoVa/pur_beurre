@@ -12,7 +12,7 @@
                 <hr class="divider my-4" />
             </div>
             <div class="col-lg-8 align-self-baseline">
-              <form id="form_1" class="search-form" action="{% url 'search' %}" method="post"
+              <form class="search-form" action="{% url 'search' %}" method="post"
                     data-foodurl="{% url 'autocomplete_foodname' %}">
                 {% csrf_token %}
                 {{ form.search_term }}
