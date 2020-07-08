@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'mugauth.apps.MugauthConfig',
     'filler.apps.FillerConfig',
     'favor.apps.FavorConfig',
+    'autocomplete.apps.AutocompleteConfig',
 ]
 
 MIDDLEWARE = [

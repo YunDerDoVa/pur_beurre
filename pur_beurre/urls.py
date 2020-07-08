@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('foodfinder.urls')),
     path('auth/', include('mugauth.urls')),
     path('favor/', include('favor.urls')),
+    path('autocomplete/', include('autocomplete.urls')),
 ]

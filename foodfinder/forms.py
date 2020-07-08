@@ -5,7 +5,14 @@ class SearchForm(forms.Form):
 
     search_term = forms.CharField(
         max_length=127,
-        widget=forms.TextInput(attrs={'placeholder': 'Ex : Tomates farcies'}))
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Ex : Tomates farcies',
+            'list': 'food_list',
+            'id': 'food_input',
+            'class': 'mug-simple-autocomplete',
+            'data-urlname': 'foodurl',
+        })
+    )
 
     def get_search_term(self):
 

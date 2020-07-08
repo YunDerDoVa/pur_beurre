@@ -1,3 +1,5 @@
+{% load static %}
+
 <!-- Masthead-->
 <header id="masthead" class="masthead">
     <div class="container h-100">
@@ -10,12 +12,17 @@
                 <hr class="divider my-4" />
             </div>
             <div class="col-lg-8 align-self-baseline">
-              <form class="search-form" action="{% url 'search' %}" method="post">
+              <form class="search-form" action="{% url 'search' %}" method="post"
+                    data-foodurl="{% url 'autocomplete_foodname' %}">
                 {% csrf_token %}
                 {{ form.search_term }}
                 <button type="submit" name="submit">Chercher</button>
               </form>
+              <datalist id="food_list">
+              </datalist>
             </div>
         </div>
     </div>
 </header>
+
+<script src="{% static "autocomplete/simple_autocomplete.js" %}" type="text/javascript"></script>
