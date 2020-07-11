@@ -7,7 +7,7 @@
     {% for search in history %}
       <div class="card small substitute-card align-items-center">
         <i class="nutriscore">{{ search.food.nutriscore }}</i>
-        <a href="{% url 'food_page' code=search.food.code %}">
+        <a href="{% url 'search' %}?code={{ search.food.code }}">
           <img src="{{ search.food.img_front_url }}" alt="{{ search.food.name }}">
         </a>
         <h6>{{ search.food.name }}</h6>

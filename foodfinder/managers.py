@@ -26,3 +26,9 @@ class FoodManager(models.Manager):
                     food = foods.first()
 
         return food
+
+    def get_food_by_code(self, code):
+
+        food = self.filter(code=code).first()
+
+        return food

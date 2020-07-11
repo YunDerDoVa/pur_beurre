@@ -104,7 +104,7 @@ class ViewsTestCase(TestCase):
 
         response = self.client.post(url, data)
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
     def test_search_in_history(self):
 

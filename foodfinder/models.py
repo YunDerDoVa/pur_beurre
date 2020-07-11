@@ -15,6 +15,7 @@ class FoodHistory(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     food = models.ForeignKey('Food', on_delete=models.CASCADE)
     #food = models.ForeignKey(Food, on_delete=models.SET_NULL, null=True)
+    date = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.user.username + ' >>> ' + self.food.name
