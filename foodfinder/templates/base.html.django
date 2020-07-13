@@ -3,6 +3,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+      <!-- Sentry -->
+      <script src="https://browser.sentry-cdn.com/5.19.1/bundle.min.js" integrity="sha384-ibWewy8LWP0FdvEBD3iLjNmbFkkh/FKtOz8GR9C8ZBWjDTbjbdIDpa4nc/AasWns" crossorigin="anonymous"></script>
+      <script>
+        Sentry.init({ dsn: 'https://c31a90ab832b435cbee687247df0c623@o419717.ingest.sentry.io/5336714' });
+      </script>
+      
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       <meta name="description" content="" />

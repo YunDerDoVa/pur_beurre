@@ -205,7 +205,7 @@ class OFFDatabase:
 
         page_size = 1000
 
-        preset = 3
+        preset = 2
 
         if preset == 1:
             categories = self._get_categories(['fruits', 'viandes', 'boissons'])
