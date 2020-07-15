@@ -1,5 +1,7 @@
 language: python
 python:
     - '3.6'
-install: pipenv install
+before_install:
+    - pipenv install
+install: pipenv run pip install --upgrade 'sentry-sdk==0.16.1'
 script: pipenv run python manage.py test
