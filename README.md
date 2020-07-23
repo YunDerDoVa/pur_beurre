@@ -14,6 +14,6 @@ https://github.com/GoswaTech/pur_beurre
 
 ## Bugs Corrigés
 
-[ ] Recherche en anonyme
-[ ] Bouton save invisible en anonyme
-[ ] Redirection après login
+[x] Recherche en anonyme
+[x] Bouton save invisible en anonyme
+[x] Redirection après login

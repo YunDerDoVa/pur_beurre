@@ -42,7 +42,7 @@ def register_view(request):
 def login_view(request):
 
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect(request.GET.pop('next', 'home'))
 
     form = LoginForm()
 
@@ -62,7 +62,7 @@ def login_view(request):
 
             if user:
                 login(request, user)
-                return redirect('home')
+                return redirect(request.GET.pop('next', 'home'))
 
     context = {
         'form': form,

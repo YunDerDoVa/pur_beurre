@@ -22,7 +22,6 @@ def home(request):
     return render(request, 'foodfinder/home.html.django', context)
 
 
-@login_required(login_url='/auth/login/')
 def search(request):
 
     if request.method == 'POST':
@@ -63,7 +62,6 @@ def search(request):
     return render(request, 'foodfinder/results_page.html.django', context)
 
 
-@login_required(login_url='/auth/login/')
 def food_page(request, code):
 
     form = SearchForm()
