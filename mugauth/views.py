@@ -10,9 +10,10 @@ from .forms import RegisterForm, LoginForm
 def register_view(request):
 
     if request.user.is_authenticated:
-        return redirect(request.GET.get('next', default='home'))
+        return redirect('home')
 
     form = RegisterForm()
+    next = request.GET.get('next', default='home')
 
     if request.method == 'POST':
 
@@ -28,12 +29,13 @@ def register_view(request):
                     user = Account.objects.create_user(cd['name'], cd['email'], cd['password'])
                     login(request, user)
 
-                    return redirect(request.GET.get('next', default='home'))
+                    return redirect(next)
                 except:
                     print('error')
 
     context = {
         'form': form,
+        'next': next,
     }
 
     return render(request, 'auth/register.html.django', context)
@@ -42,10 +44,9 @@ def register_view(request):
 def login_view(request):
 
     if request.user.is_authenticated:
-        return redirect(request.GET.get('next', default='home'))
+        return redirect('home')
 
     form = LoginForm()
-
     next = request.GET.get('next', default='home')
 
     if request.method == 'POST':
