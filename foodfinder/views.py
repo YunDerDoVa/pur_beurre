@@ -37,8 +37,9 @@ def search(request):
             if food is None:
                 return redirect('home')
             else:
-                if request.user.allow_datashare:
-                    FoodHistory.objects.create(user=request.user, food=food)
+                if request.user.is_authenticated:
+                    if request.user.allow_datashare:
+                        FoodHistory.objects.create(user=request.user, food=food)
 
             substitutes = algorythm.search_substitutes(food, request.user)
 
