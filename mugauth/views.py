@@ -46,6 +46,8 @@ def login_view(request):
 
     form = LoginForm()
 
+    next = request.GET.get('next', default='home')
+
     if request.method == 'POST':
 
         form = LoginForm(request.POST)
@@ -62,10 +64,11 @@ def login_view(request):
 
             if user:
                 login(request, user)
-                return redirect(request.GET.get('next', default='home'))
+                return redirect(next)
 
     context = {
         'form': form,
+        'next': next,
     }
 
     return render(request, 'auth/login.html.django', context)

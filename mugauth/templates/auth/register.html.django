@@ -12,10 +12,11 @@
     <form class="auth-form" action="." method="post">
       {% csrf_token %}
       {{ form.as_p }}
+      <input id="next" type="hidden" name="next" value="{{ next }}">
       <button type="submit" name="submit">Submit</button>
     </form>
 
-    <a href="{% url 'login_view' %}">Login</a>
+    <a href="{% url 'login_view' %}?next={{ next }}">Login</a>
 
   </div>
 
