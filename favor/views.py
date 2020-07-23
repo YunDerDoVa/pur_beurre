@@ -9,7 +9,6 @@ from .models import Favor
 
 
 # Create your views here.
-@login_required(login_url='/auth/login/')
 def favors(request):
 
     form = SearchForm()
@@ -27,7 +26,6 @@ def favors(request):
     return render(request, 'foodfinder/favors_page.html.django', context)
 
 
-@login_required(login_url='/auth/login/')
 def add_favor(request, food_code, original_food_code):
 
     json = {'success': False}
@@ -42,7 +40,6 @@ def add_favor(request, food_code, original_food_code):
     return JsonResponse(json)
 
 
-@login_required(login_url='/auth/login/')
 def del_favor(request, favor_id):
 
     json = {'success': False}
