@@ -10,7 +10,7 @@ from .forms import RegisterForm, LoginForm
 def register_view(request):
 
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect(request.GET.get('next', default='home'))
 
     form = RegisterForm()
 
@@ -28,7 +28,7 @@ def register_view(request):
                     user = Account.objects.create_user(cd['name'], cd['email'], cd['password'])
                     login(request, user)
 
-                    return redirect('home')
+                    return redirect(request.GET.get('next', default='home'))
                 except:
                     print('error')
 
@@ -42,7 +42,7 @@ def register_view(request):
 def login_view(request):
 
     if request.user.is_authenticated:
-        return redirect(request.GET.pop('next', 'home'))
+        return redirect(request.GET.get('next', default='home'))
 
     form = LoginForm()
 
@@ -62,7 +62,7 @@ def login_view(request):
 
             if user:
                 login(request, user)
-                return redirect(request.GET.pop('next', 'home'))
+                return redirect(request.GET.get('next', default='home'))
 
     context = {
         'form': form,
