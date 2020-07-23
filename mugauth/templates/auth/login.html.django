@@ -9,10 +9,9 @@
 
   <div class="d-flex align-items-center my-4 h-50 flex-column">
 
-    <form class="auth-form" action="." method="post">
+    <form class="auth-form" action=".?next={{ next }}" method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      <input id="next" type="hidden" name="next" value="{{ next }}">
       <button type="submit" name="submit">Submit</button>
     </form>
 
