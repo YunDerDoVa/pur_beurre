@@ -22,7 +22,6 @@ def home(request):
     return render(request, 'foodfinder/home.html.django', context)
 
 
-@login_required(login_url='/auth/login/')
 def search(request):
 
     if request.method == 'GET':
@@ -43,12 +42,22 @@ def search(request):
 
         if search_term is not None:
             food = Food.objects.get_food_by_search_term(search_term)
+
+            if food is None:
+                return redirect('home')
+            else:
+                if request.user.is_authenticated:
+                    if request.user.allow_datashare:
+                        FoodHistory.objects.create(user=request.user, food=food)
+
+            substitutes = algorythm.search_substitutes(food, request.user)
+
         else:
             substitutes = []
             food = None
 
     else:
-        
+
         form = SearchForm()
 
     if food is not None:
@@ -71,7 +80,6 @@ def search(request):
     return render(request, 'foodfinder/results_page.html.django', context)
 
 
-@login_required(login_url='/auth/login/')
 def food_page(request, code):
 
     form = SearchForm()

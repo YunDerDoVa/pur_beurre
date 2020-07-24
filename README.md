@@ -11,3 +11,15 @@ https://trello.com/invite/b/5qldxhTs/0cefac054afa47c7893eb89ff4129792/projet-8
 ## GitHub
 
 https://github.com/GoswaTech/pur_beurre
+
+## Bugs Corrigés
+
+[x] Recherche en anonyme
+[x] Bouton save invisible en anonyme
+[x] Redirection après login
+[x] Tests à écrire
+
+## Visio
+
+- test next
+- test bouton save

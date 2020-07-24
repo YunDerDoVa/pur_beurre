@@ -28,7 +28,9 @@
                 <img src="{{ food.img_front_url }}" alt="{{ food.name }}">
               </a>
               <h3>{{ food.name }}</h3>
-              <a href="javascript:add_favor('food_{{ food.id }}', '{% url 'add_favor' food_code=food.code original_food_code=original_food.code %}');"> <i class="far fa-save"></i> sauvegarder </a>
+              {% if request.user.is_authenticated %}
+                <a href="javascript:add_favor('food_{{ food.id }}', '{% url 'add_favor' food_code=food.code original_food_code=original_food.code %}');"> <i class="far fa-save"></i> sauvegarder </a>
+              {% endif %}
             </div>
           </div>
           <br>

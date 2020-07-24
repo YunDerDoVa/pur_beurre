@@ -1,0 +1,9 @@
+language: python
+python:
+    - '3.6'
+env:
+    - SECRET_KEY="7cd3=r0jeojff87e2bv+ezvasa38n(01#zuv#4vs85hk5phkr#"
+before_install:
+    - pipenv install
+install: pipenv run pip install --upgrade 'sentry-sdk==0.16.1'
+script: pipenv run python manage.py test

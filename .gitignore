@@ -1,2 +1,4 @@
 __pycache__*
 .env
+pur_beurre/settings/sentry.py
+staticfiles/

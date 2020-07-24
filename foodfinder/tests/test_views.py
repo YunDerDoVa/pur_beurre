@@ -95,6 +95,15 @@ class ViewsTestCase(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+    def test_search_perform_anonymous_search_valid(self):
+
+        url = reverse('search')
+        data = self.VALID_DATA
+
+        response = self.client.post(url, data, follow=False)
+
+        self.assertEqual(response.status_code, 200)
+
     def test_search_perform_search_non_valid(self):
 
         url = reverse('search')
