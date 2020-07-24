@@ -24,8 +24,8 @@ def home(request):
 
 def search(request):
 
+    # IF GET
     if request.method == 'GET':
-
         form = SearchForm()
         code = request.GET.dict().pop('code', None)
 
@@ -35,8 +35,8 @@ def search(request):
             substitutes = []
             food = None
 
+    # IF POST
     elif request.method == 'POST':
-
         form = SearchForm(request.POST)
         search_term = form.get_search_term()
 
@@ -45,25 +45,18 @@ def search(request):
 
             if food is None:
                 return redirect('home')
-            else:
-                if request.user.is_authenticated:
-                    if request.user.allow_datashare:
-                        FoodHistory.objects.create(user=request.user, food=food)
-
-            substitutes = algorythm.search_substitutes(food, request.user)
 
         else:
             substitutes = []
             food = None
 
-    else:
-
-        form = SearchForm()
-
+    # IF FOOD
     if food is not None:
         algorythm = Algorythm.get_algorythm_by_classname('ByCategory')
-        if request.user.allow_datashare:
-            FoodHistory.objects.create(user=request.user, food=food)
+        if request.user.is_authenticated:
+            if request.user.allow_datashare:
+                FoodHistory.objects.create(user=request.user, food=food)
+                
     else:
         return redirect('home')
 
