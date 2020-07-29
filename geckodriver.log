@@ -563,3 +563,15 @@ JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't fin
 1596034952824	Marionette	INFO	Listening on port 54239
 1596034953226	Marionette	WARN	TLS certificate errors will be ignored for this session
 1596034958222	Marionette	INFO	Stopped listening on port 54239
+1596036689206	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jeuxx\\AppData\\Local\\Temp\\rust_mozprofiles3XovU"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1596036691677	Marionette	INFO	Listening on port 54768
+1596036691822	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://127.0.0.1:8000/static/autocomplete/simple_autocomplete.js, line 18: SyntaxError: JSON.parse: unexpected end of data at line 1 column 1 of the JSON data
+1596036700400	Marionette	INFO	Stopped listening on port 54768
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
