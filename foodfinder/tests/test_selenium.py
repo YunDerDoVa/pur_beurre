@@ -15,7 +15,7 @@ class FoodfinderSeleniumTestCase(LiveServerTestCase):
     PASSWORD = 'password'
 
     def setUp(self):
-        self.selenium = webdriver.Firefox(executable_path=path)
+        self.selenium = webdriver.Firefox()
         super(FoodfinderSeleniumTestCase, self).setUp()
 
     def tearDown(self):
