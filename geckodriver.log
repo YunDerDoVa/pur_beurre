@@ -486,3 +486,7 @@ console.error: services.settings:
 console.error: services.settings: 
   main/messaging-experiments Signature failed  TypeError: NetworkError when attempting to fetch resource.
 console.error: Region.jsm: "Failed to fetch region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+1596032601896	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jeuxx\\AppData\\Local\\Temp\\rust_mozprofileAVacsI"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1596032605105	Marionette	INFO	Listening on port 52879
+1596032605508	Marionette	WARN	TLS certificate errors will be ignored for this session
