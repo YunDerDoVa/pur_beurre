@@ -14,12 +14,20 @@ class AuthSeleniumTestCase(LiveServerTestCase):
     PASSWORD = 'password'
 
     def setUp(self):
-        self.selenium = webdriver.Firefox()
-        super(AuthSeleniumTestCase, self).setUp()
+        try:
+            self.selenium = webdriver.Firefox()
+        except:
+            pass
+
+        super(FoodfinderSeleniumTestCase, self).setUp()
 
     def tearDown(self):
-        self.selenium.quit()
-        super(AuthSeleniumTestCase, self).tearDown()
+        try:
+            self.selenium.quit()
+        except:
+            pass
+
+        super(FoodfinderSeleniumTestCase, self).tearDown()
 
     def test_next_redirect(self):
         if os.environ.get('TRAVIS', 'False') != 'False':

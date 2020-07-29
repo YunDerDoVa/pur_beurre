@@ -15,11 +15,19 @@ class FoodfinderSeleniumTestCase(LiveServerTestCase):
     PASSWORD = 'password'
 
     def setUp(self):
-        self.selenium = webdriver.Firefox()
+        try:
+            self.selenium = webdriver.Firefox()
+        except:
+            pass
+
         super(FoodfinderSeleniumTestCase, self).setUp()
 
     def tearDown(self):
-        self.selenium.quit()
+        try:
+            self.selenium.quit()
+        except:
+            pass
+
         super(FoodfinderSeleniumTestCase, self).tearDown()
 
     def test_save_button(self):
