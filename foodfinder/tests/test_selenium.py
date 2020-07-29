@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 
-class AuthSeleniumTestCase(LiveServerTestCase):
+class FoodfinderSeleniumTestCase(LiveServerTestCase):
 
     USERNAME = 'TestUser'
     EMAIL = 'test@email.com'
@@ -11,28 +11,28 @@ class AuthSeleniumTestCase(LiveServerTestCase):
 
     def setUp(self):
         self.selenium = webdriver.Firefox()
-        super(AuthSeleniumTestCase, self).setUp()
+        super(FoodfinderSeleniumTestCase, self).setUp()
 
     def tearDown(self):
         self.selenium.quit()
-        super(AuthSeleniumTestCase, self).tearDown()
+        super(FoodfinderSeleniumTestCase, self).tearDown()
 
-    def test_next_redirect(self):
+    def test_save_button(self):
         selenium = self.selenium
         #Opening the link we want to test
-        selenium.get('http://127.0.0.1:8000/favor/')
+        selenium.get('http://127.0.0.1:8000/')
         #find the form element
-        email = selenium.find_element_by_id('id_email')
-        password = selenium.find_element_by_id('id_password')
+        email = selenium.find_element_by_id('food_input')
 
         submit = selenium.find_element_by_name('submit')
 
         #Fill the form with data
-        email.send_keys(self.EMAIL)
-        password.send_keys('self.PASSWORD')
+        email.send_keys('tomates')
 
         #submitting the form
         submit.send_keys(Keys.RETURN)
 
         #check the returned result
-        self.assertTemplateUsed('foodfinder/favors_page.html.django')
+        test_1 = 'sauvegarder' in selenium.page_source
+        self.assertTrue(not test_1)
+        self.assertTemplateUsed('foodfinder/results_page.html.django')
