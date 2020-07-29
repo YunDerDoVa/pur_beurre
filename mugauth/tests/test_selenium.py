@@ -14,8 +14,7 @@ class AuthSeleniumTestCase(LiveServerTestCase):
     PASSWORD = 'password'
 
     def setUp(self):
-        path = settings.BASE_DIR
-        self.selenium = webdriver.Firefox(path)
+        self.selenium = webdriver.Firefox()
         super(AuthSeleniumTestCase, self).setUp()
 
     def tearDown(self):

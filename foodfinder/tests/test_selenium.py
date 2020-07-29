@@ -4,6 +4,7 @@ from django.test import LiveServerTestCase
 from django.conf import settings
 
 from selenium import webdriver
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.common.keys import Keys
 
 
@@ -14,9 +15,7 @@ class FoodfinderSeleniumTestCase(LiveServerTestCase):
     PASSWORD = 'password'
 
     def setUp(self):
-        #path = os.path.join(settings.BASE_DIR, 'geckodriver.exe')
-        path = settings.BASE_DIR
-        self.selenium = webdriver.Firefox(path)
+        self.selenium = webdriver.Firefox()
         super(FoodfinderSeleniumTestCase, self).setUp()
 
     def tearDown(self):
