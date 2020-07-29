@@ -18,8 +18,3 @@ https://github.com/GoswaTech/pur_beurre
 [x] Bouton save invisible en anonyme
 [x] Redirection après login
 [x] Tests à écrire
-
-## Visio
-
-- test next
-- test bouton save
