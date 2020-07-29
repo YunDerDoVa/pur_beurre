@@ -490,3 +490,18 @@ console.error: Region.jsm: "Failed to fetch region" (new TypeError("NetworkError
 JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
 1596032605105	Marionette	INFO	Listening on port 52879
 1596032605508	Marionette	WARN	TLS certificate errors will be ignored for this session
+1596032905637	Marionette	INFO	Stopped listening on port 52879
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1596033542599	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jeuxx\\AppData\\Local\\Temp\\rust_mozprofileRreW2J"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1596033544985	Marionette	INFO	Listening on port 53212
+1596033545226	Marionette	WARN	TLS certificate errors will be ignored for this session
+1596033592288	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jeuxx\\AppData\\Local\\Temp\\rust_mozprofileIEgOHd"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1596033595196	Marionette	INFO	Listening on port 53276
+1596033595405	Marionette	WARN	TLS certificate errors will be ignored for this session
