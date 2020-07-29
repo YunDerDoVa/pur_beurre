@@ -505,3 +505,61 @@ JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't fin
 JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
 1596033595196	Marionette	INFO	Listening on port 53276
 1596033595405	Marionette	WARN	TLS certificate errors will be ignored for this session
+1596034380990	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jeuxx\\AppData\\Local\\Temp\\rust_mozprofilettgCfL"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1596034383517	Marionette	INFO	Listening on port 53710
+1596034383606	Marionette	WARN	TLS certificate errors will be ignored for this session
+1596034483036	Marionette	INFO	Stopped listening on port 53710
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1596034732963	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jeuxx\\AppData\\Local\\Temp\\rust_mozprofilet0FSKZ"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1596034736038	Marionette	INFO	Listening on port 54004
+1596034736075	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://marionette/content/proxy.js, line 222: TypeError: this.browser.driver.dialogObserver is null
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x5A000D,name=PHttpChannel::Msg_DeletingChannel) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x39012D,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x5A000D,name=PHttpChannel::Msg_DeletingChannel) Channel closing: too late to send/recv, messages will be lost
+
+1596034826803	Marionette	INFO	Stopped listening on port 54004
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1596034842062	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jeuxx\\AppData\\Local\\Temp\\rust_mozprofilepCwRDn"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1596034844923	Marionette	INFO	Listening on port 54075
+1596034845189	Marionette	WARN	TLS certificate errors will be ignored for this session
+1596034877426	Marionette	INFO	Stopped listening on port 54075
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1596034890776	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jeuxx\\AppData\\Local\\Temp\\rust_mozprofileIgRuBO"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1596034894074	Marionette	INFO	Listening on port 54167
+1596034894392	Marionette	WARN	TLS certificate errors will be ignored for this session
+1596034900859	Marionette	INFO	Stopped listening on port 54167
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1596034949609	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jeuxx\\AppData\\Local\\Temp\\rust_mozprofile3ytS1M"
+1596034952824	Marionette	INFO	Listening on port 54239
+1596034953226	Marionette	WARN	TLS certificate errors will be ignored for this session
+1596034958222	Marionette	INFO	Stopped listening on port 54239

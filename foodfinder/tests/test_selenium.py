@@ -15,7 +15,13 @@ class FoodfinderSeleniumTestCase(LiveServerTestCase):
     PASSWORD = 'password'
 
     def setUp(self):
-        self.selenium = webdriver.Firefox()
+        processor = os.environ.get('PROCESSOR', 'Win')
+        if processor == 'AMD64':
+            path = os.path.join(settings.BASE_DIR, 'geckodriver')
+        elif processor == 'Win':
+            path = os.path.join(settings.BASE_DIR, 'geckodriver.exe')
+
+        self.selenium = webdriver.Firefox(executable_path=path)
         super(FoodfinderSeleniumTestCase, self).setUp()
 
     def tearDown(self):
