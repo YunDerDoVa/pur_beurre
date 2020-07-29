@@ -17,18 +17,18 @@ class FoodfinderSeleniumTestCase(LiveServerTestCase):
     def setUp(self):
         try:
             self.selenium = webdriver.Firefox()
+            super(FoodfinderSeleniumTestCase, self).setUp()
         except:
             pass
 
-        super(FoodfinderSeleniumTestCase, self).setUp()
 
     def tearDown(self):
         try:
             self.selenium.quit()
+            super(FoodfinderSeleniumTestCase, self).tearDown()
         except:
             pass
 
-        super(FoodfinderSeleniumTestCase, self).tearDown()
 
     def test_save_button(self):
         if os.environ.get('TRAVIS', 'False') != 'False':
