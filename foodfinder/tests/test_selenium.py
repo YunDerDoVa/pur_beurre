@@ -15,38 +15,29 @@ class FoodfinderSeleniumTestCase(LiveServerTestCase):
     PASSWORD = 'password'
 
     def setUp(self):
-        try:
-            self.selenium = webdriver.Firefox()
-            super(FoodfinderSeleniumTestCase, self).setUp()
-        except:
-            pass
-
+        self.selenium = webdriver.Firefox()
+        super(FoodfinderSeleniumTestCase, self).setUp()
 
     def tearDown(self):
-        try:
-            self.selenium.quit()
-            super(FoodfinderSeleniumTestCase, self).tearDown()
-        except:
-            pass
-
+        self.selenium.quit()
+        super(FoodfinderSeleniumTestCase, self).tearDown()
 
     def test_save_button(self):
-        if os.environ.get('TRAVIS', 'False') != 'False':
-            selenium = self.selenium
-            #Opening the link we want to test
-            selenium.get('http://127.0.0.1:8000/')
-            #find the form element
-            email = selenium.find_element_by_id('food_input')
+        selenium = self.selenium
+        #Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/')
+        #find the form element
+        email = selenium.find_element_by_id('food_input')
 
-            submit = selenium.find_element_by_name('submit')
+        submit = selenium.find_element_by_name('submit')
 
-            #Fill the form with data
-            email.send_keys('tomates')
+        #Fill the form with data
+        email.send_keys('tomates')
 
-            #submitting the form
-            submit.send_keys(Keys.RETURN)
+        #submitting the form
+        submit.send_keys(Keys.RETURN)
 
-            #check the returned result
-            test_1 = 'sauvegarder' in selenium.page_source
-            self.assertTrue(not test_1)
-            self.assertTemplateUsed('foodfinder/results_page.html.django')
+        #check the returned result
+        test_1 = 'sauvegarder' in selenium.page_source
+        self.assertTrue(not test_1)
+        self.assertTemplateUsed('foodfinder/results_page.html.django')
