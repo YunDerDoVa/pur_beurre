@@ -16,7 +16,7 @@ def favors(request):
 
     favors = Favor.objects.filter(account=request.user).order_by('date').all()
 
-    history = request.user.foodhistory_set.order_by('date').all()[:16]
+    history = request.user.foodhistory_set.order_by('-date').all()[:16]
 
     context = {
         'form': form,
